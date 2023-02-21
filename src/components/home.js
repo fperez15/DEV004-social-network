@@ -1,4 +1,4 @@
-import navigate from '../functions/navigate.js'
+import navigate from '../router/navigate.js'
 
 export const home = () => {
     const homeSection = document.createElement('section');
