@@ -9,4 +9,5 @@ export const register = () => {
   registerSection.appendChild(inpEmail);
 
   return registerSection;
+  console.log(registerSection);
 };

@@ -14,3 +14,4 @@ const component = routes[window.location.pathname];
 
 rootSection.appendChild(component());
 
+
