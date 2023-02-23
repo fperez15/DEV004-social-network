@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+* {
+  background-color: #fef6e4;
+  font-family: 'Questrial', sans-serif;
+}
+.regSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.logo {
+  max-width: 50%;
+}
+.formRegister {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form{
+    background-color: #f3d2c1;
+    padding: 5px 0 5px 0;
+    border: 0;
+    border-radius: 5px;
+    text-align: center;
+}
+#birthday{
+    padding: 3px 15px 3px 15px;
+    color: #777777;
+}
+.btnRegister{
+    background-color: #f582ae;
+    color: #001858;
+    font-weight:600;
+    border: 0;
+    border-radius: 5px;
+    padding: 8px 20px 8px 20px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+.btnRegister:hover{
+    background-color: #d95e8d;
+    color: #fef6e4;
+}
