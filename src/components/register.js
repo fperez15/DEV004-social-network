@@ -1,15 +1,49 @@
 export const register = () => {
   const registerSection = document.createElement("section");
-  registerSection.innerHTML = `<section class="regSection">
-  <img class= "logo" src="./img/logo.png">
-  <form class="formRegister">
-  <input class="form" id="name" type="text" placeholder="Name"></input>
-  <input class="form" id="email" type="email" placeholder="Email"></input>
-  <input class="form" id="birthday" type="date"></input>
-  <input class="form" id="password" type="password" placeholder="Pasword"></input>
-  <button class="btnRegister" id="btnRegister">REGISTER</button>
-  </form>
-  </section>
-  `;
+  registerSection.id = "regSection";
+  const logo = document.createElement("img");
+  logo.className = "logo";
+  logo.id = "logo";
+  logo.src = "./img/logo.png";
+
+  const formRegister = document.createElement("form");
+  formRegister.className = "formRegister";
+
+  const inpName = document.createElement("input");
+  inpName.className = "form";
+  inpName.id = "name";
+  inpName.type = "text";
+  inpName.placeholder = "Name";
+  const inpEmail = document.createElement("input");
+  inpEmail.className = "form";
+  inpEmail.id = "email";
+  inpEmail.type = "email";
+  inpEmail.placeholder = "Email";
+  const inpPassword = document.createElement("input");
+  inpPassword.className = "form";
+  inpPassword.id = "password";
+  inpPassword.placeholder = "Password";
+  const btnRegister = document.createElement("button");
+  btnRegister.type = "submit";
+  btnRegister.class = "btnRegister";
+  btnRegister.id = "btnRegister";
+  btnRegister.textContent = "REGISTER";
+
+  formRegister.appendChild(inpName);
+  formRegister.appendChild(inpEmail);
+  formRegister.appendChild(inpPassword);
+  formRegister.appendChild(btnRegister);
+
+  registerSection.appendChild(logo);
+  registerSection.appendChild(formRegister);
+
+  formRegister.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = formRegister["name"].value;
+    const email = formRegister["email"].value;
+    const password = formRegister["password"].value;
+    console.log(name, email, password);
+  });
+
   return registerSection;
 };
