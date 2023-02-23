@@ -1,3 +1,5 @@
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
+import { auth } from "../lib/fireBase.js"
 export const register = () => {
   const registerSection = document.createElement("section");
   registerSection.id = "regSection";
@@ -37,12 +39,18 @@ export const register = () => {
   registerSection.appendChild(logo);
   registerSection.appendChild(formRegister);
 
-  formRegister.addEventListener("submit", (e) => {
+  formRegister.addEventListener("submit", async (e) => {
     e.preventDefault();
     const name = formRegister["name"].value;
     const email = formRegister["email"].value;
     const password = formRegister["password"].value;
-    console.log(name, email, password);
+    
+    try {
+      const UserCredentials = await createUserWithEmailAndPassword(auth, name, email, password);
+    console.log(UserCredentials);
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   return registerSection;
