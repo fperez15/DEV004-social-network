@@ -46,7 +46,7 @@ export const register = () => {
     const password = formRegister["password"].value;
     
     try {
-      const UserCredentials = await createUserWithEmailAndPassword(auth, name, email, password);
+      const UserCredentials = await createUserWithEmailAndPassword(auth, email, password);
     console.log(UserCredentials);
     } catch (error) {
       console.log(error);
