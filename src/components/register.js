@@ -25,6 +25,7 @@ export const register = () => {
   inpPassword.className = "form";
   inpPassword.id = "password";
   inpPassword.placeholder = "Password";
+  inpPassword.type = "password";
   const btnRegister = document.createElement("button");
   btnRegister.type = "submit";
   btnRegister.className = "btnRegister";
