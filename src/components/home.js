@@ -1,10 +1,7 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import {
-  GoogleAuthProvider,
-  signInWithPopup,
-} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
-import { auth } from "../lib/fireBase.js";
+import { auth, provider } from "../lib/fireBase.js";
 import navigate from "../router/navigate.js";
+import { signInWithPopup } from "firebase/auth";
 
 export const home = () => {
   const homeSection = document.createElement("section");
@@ -51,7 +48,7 @@ export const home = () => {
   const line2 = document.createElement("hr");
   line2.className = "line2";
   line2.id = "line2";
-  
+
   division.appendChild(line);
   division.appendChild(or);
   division.appendChild(line2);
@@ -77,33 +74,46 @@ export const home = () => {
 
   //Login with email
   formLogin.addEventListener("submit", async (e) => {
-   e.preventDefault();
-   const email = formLogin["email"].value;
-   const password = formLogin["password"].value;
+    e.preventDefault();
+    const email = formLogin["email"].value;
+    const password = formLogin["password"].value;
 
-   try {
-      const credentials = await signInWithEmailAndPassword(auth, email, password);
-   console.log(credentials);
-   navigate("/feed");
-
-   } catch (error) {
-   //Poner alertas de errores PENDIENTE
+    try {
+      const credentials = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log(credentials);
+      navigate("/feed");
+    } catch (error) {
+      //Poner alertas de errores PENDIENTE
       console.log(error);
-   }
-  })
+    }
+  });
 
   //Login with Google
   btnGoogle.addEventListener("click", async () => {
-    const provider = new GoogleAuthProvider();
-
-    try {
-      const credential = await signInWithPopup(auth, provider);
-      console.log(credential);
-      navigate("/feed");
-
-    } catch (error) {
-      console.log(error);
-    }
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        navigate("/feed");
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
   });
   return homeSection;
 };
