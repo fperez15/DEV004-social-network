@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, GoogleAuthProvider } from "firebase/auth";
 import { auth, provider } from "../lib/fireBase.js";
 import navigate from "../router/navigate.js";
 import { signInWithPopup } from "firebase/auth";
