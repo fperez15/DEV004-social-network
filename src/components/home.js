@@ -101,6 +101,7 @@ export const home = () => {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
+      
         navigate("/feed");
         // ...
       })
@@ -114,6 +115,10 @@ export const home = () => {
         const credential = GoogleAuthProvider.credentialFromError(error);
         // ...
       });
-  });
+
+
+
+ });
+
   return homeSection;
 };

@@ -14,7 +14,7 @@ export const feed = () => {
 
   const imgUser = document.createElement("img");
   imgUser.className = "imgUser";
-  imgUser.src = "./img/user.png";
+  
 
   const btnLogout = document.createElement("button");
   btnLogout.type = "submit";
@@ -39,6 +39,24 @@ export const feed = () => {
         console.log(error);
       });
   });
+  const auth = getAuth();
+  const userGoogle = auth.currentUser;
+        
+      
+        if (userGoogle !== null) {
+          userGoogle.providerData.forEach((profile) => {
 
+            let photo = profile.photoURL
+            console.log("foto", photo);
+          
+
+          console.log("Sign-in provider: " + profile.providerId);
+          console.log("  Provider-specific UID: " + profile.uid);
+          console.log("  Name: " + profile.displayName);
+          console.log("  Email: " + profile.email);
+          console.log("  Photo URL: " + profile.photoURL);
+          });
+        } 
+ 
   return feedSection;
 };

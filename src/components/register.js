@@ -92,6 +92,7 @@ export const register = () => {
       email: inpEmail.value,
       password: inpPassword.value,
       date: inpDate.value,
+      
     })
     .then(() => {
       console.log("Saved");
