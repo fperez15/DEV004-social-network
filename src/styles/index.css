@@ -83,16 +83,15 @@
 }
 
 .logoFeed {
-  max-width: 35%;
+  max-width: 80%;
   grid-column: 2;
-  place-content: center;
+  justify-self: center;
+  
 }
 
 .imgUser {
-  max-width: 20%;
-  place-content: right;
-
- 
+  max-width: 40%;
+  justify-self: right;
   
 }
 

@@ -5,7 +5,7 @@ export const feed = () => {
   feedSection.className = "feedSection";
   feedSection.id = "feedSection";
 
-  const feedNav = document.createElement("div");
+  const feedNav = document.createElement("nav");
   feedNav.id = "feedNav";
   const logo = document.createElement("img");
   logo.className = "logoFeed";
