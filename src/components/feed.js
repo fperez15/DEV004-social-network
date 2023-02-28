@@ -14,7 +14,25 @@ export const feed = () => {
 
   const imgUser = document.createElement("img");
   imgUser.className = "imgUser";
-  
+
+  const auth = getAuth();
+  const userGoogle = auth.currentUser;
+  if (userGoogle !== null) {
+    userGoogle.providerData.forEach((profile) => {
+      let photo = profile.photoURL;
+      imgUser.src = photo;
+      if (photo === null){
+        imgUser.src = "./img/user.png";
+      }
+      //console.log("Sign-in provider: " + profile.providerId);
+      //console.log("  Provider-specific UID: " + profile.uid);
+      //console.log("  Name: " + profile.displayName);
+      //console.log("  Email: " + profile.email);
+      //console.log("  Photo URL: " + profile.photoURL);
+    });
+  }
+
+  const userMenu = document.createElement("div");
 
   const btnLogout = document.createElement("button");
   btnLogout.type = "submit";
@@ -22,12 +40,19 @@ export const feed = () => {
   btnLogout.id = "btnLogout";
   btnLogout.textContent = "LOGOUT";
   btnLogout.style.display = "none";
+
+  userMenu.appendChild(btnLogout)
+
   feedNav.appendChild(logo);
   feedNav.appendChild(imgUser);
-  feedNav.appendChild(btnLogout);
-  
+  feedNav.appendChild(userMenu);
+
 
   feedSection.appendChild(feedNav);
+
+  imgUser.addEventListener("click", () => {
+    btnLogout.style.display = "block";
+  });
 
   btnLogout.addEventListener("click", async () => {
     const auth = getAuth();
@@ -39,24 +64,6 @@ export const feed = () => {
         console.log(error);
       });
   });
-  const auth = getAuth();
-  const userGoogle = auth.currentUser;
-        
-      
-        if (userGoogle !== null) {
-          userGoogle.providerData.forEach((profile) => {
 
-            let photo = profile.photoURL
-            console.log("foto", photo);
-          
-
-          console.log("Sign-in provider: " + profile.providerId);
-          console.log("  Provider-specific UID: " + profile.uid);
-          console.log("  Name: " + profile.displayName);
-          console.log("  Email: " + profile.email);
-          console.log("  Photo URL: " + profile.photoURL);
-          });
-        } 
- 
   return feedSection;
 };
