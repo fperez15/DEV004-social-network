@@ -85,6 +85,7 @@ export const home = () => {
         password
       );
       console.log(credentials);
+      localStorage.setItem("idUser", credentials.user.uid);
       navigate("/feed");
     } catch (error) {
       //Poner alertas de errores PENDIENTE

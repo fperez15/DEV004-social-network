@@ -15,13 +15,35 @@ export const feed = () => {
   const imgUser = document.createElement("img");
   imgUser.className = "imgUser";
 
+  const userMenu = document.createElement("div");
+  userMenu.className = "userMenu";
+
+  const btnLogout = document.createElement("button");
+  btnLogout.type = "submit";
+  btnLogout.className = "btnLogout";
+  btnLogout.id = "btnLogout";
+  btnLogout.textContent = "LOGOUT";
+  btnLogout.style.display = "none";
+
+  const userName = document.createElement("h5");
+
+
+  userMenu.appendChild(imgUser);
+  userMenu.appendChild(userName);
+  userMenu.appendChild(btnLogout);
+
   const auth = getAuth();
   const userGoogle = auth.currentUser;
+  console.log("usuario", userGoogle);
   if (userGoogle !== null) {
     userGoogle.providerData.forEach((profile) => {
       let photo = profile.photoURL;
       imgUser.src = photo;
-      if (photo === null){
+
+      let name = profile.displayName;
+      userName.textContent = name;
+
+      if (photo === null) {
         imgUser.src = "./img/user.png";
       }
       //console.log("Sign-in provider: " + profile.providerId);
@@ -31,22 +53,19 @@ export const feed = () => {
       //console.log("  Photo URL: " + profile.photoURL);
     });
   }
-
-  const userMenu = document.createElement("div");
-
-  const btnLogout = document.createElement("button");
-  btnLogout.type = "submit";
-  btnLogout.className = "btnLogout";
-  btnLogout.id = "btnLogout";
-  btnLogout.textContent = "LOGOUT";
-  btnLogout.style.display = "none";
-
-  userMenu.appendChild(btnLogout)
+  const user = auth.currentUser;
+  if (user !== null) {
+    // The user object has basic properties such as display name, email, etc.
+    const name = user.name;
+    //const email = user.email;
+  //  const photoURL = user.photoURL;
+    //const emailVerified = user.emailVerified;
+   // const uid = user.uid;
+   console.log("NOMBRE", name);
+  }
 
   feedNav.appendChild(logo);
-  feedNav.appendChild(imgUser);
   feedNav.appendChild(userMenu);
-
 
   feedSection.appendChild(feedNav);
 
