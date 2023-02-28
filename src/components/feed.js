@@ -5,21 +5,27 @@ export const feed = () => {
   feedSection.className = "feedSection";
   feedSection.id = "feedSection";
 
-  const feedNav = document.createElement("nav");
+  const feedNav = document.createElement("div");
   feedNav.id = "feedNav";
   const logo = document.createElement("img");
-  logo.className = "logo";
-  logo.id = "logo";
+  logo.className = "logoFeed";
+  logo.id = "logoFeed";
   logo.src = "./img/logo.png";
+
+  const imgUser = document.createElement("img");
+  imgUser.className = "imgUser";
+  imgUser.src = "./img/user.png";
 
   const btnLogout = document.createElement("button");
   btnLogout.type = "submit";
   btnLogout.className = "btnLogout";
   btnLogout.id = "btnLogout";
   btnLogout.textContent = "LOGOUT";
-
+  btnLogout.style.display = "none";
   feedNav.appendChild(logo);
+  feedNav.appendChild(imgUser);
   feedNav.appendChild(btnLogout);
+  
 
   feedSection.appendChild(feedNav);
 

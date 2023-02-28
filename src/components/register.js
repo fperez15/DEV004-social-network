@@ -1,8 +1,8 @@
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
 import { auth } from "../lib/fireBase.js";
 import navigate from "../router/navigate.js";
-import { getFirestore } from "firebase/firestore";
-import { addDoc, collection } from "firebase/firestore";
+import { getFirestore, addDoc, collection } from "firebase/firestore";
+
 
 export const register = () => {
   const registerSection = document.createElement("section");
@@ -25,6 +25,11 @@ export const register = () => {
   inpEmail.id = "email";
   inpEmail.type = "email";
   inpEmail.placeholder = "Email";
+  const inpDate = document.createElement("input");
+  inpDate.className = "form";
+  inpDate.id = "inpDate";
+  inpDate.type = "date";
+  inpDate.placeholder = "date";
   const inpPassword = document.createElement("input");
   inpPassword.className = "form";
   inpPassword.id = "password";
@@ -42,6 +47,7 @@ export const register = () => {
 
   formRegister.appendChild(inpName);
   formRegister.appendChild(inpEmail);
+  formRegister.appendChild(inpDate);
   formRegister.appendChild(inpPassword);
   formRegister.appendChild(errorMessage);
   formRegister.appendChild(btnRegister);
@@ -51,7 +57,6 @@ export const register = () => {
 
   formRegister.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const name = formRegister["name"].value;
     const email = formRegister["email"].value;
     const password = formRegister["password"].value;
 
@@ -86,7 +91,7 @@ export const register = () => {
       name: inpName.value,
       email: inpEmail.value,
       password: inpPassword.value,
-     
+      date: inpDate.value,
     })
     .then(() => {
       console.log("Saved");
