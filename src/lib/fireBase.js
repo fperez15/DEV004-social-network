@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider} from "firebase/auth";
-
+import { collection, getDocs } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAOUeeD-y4TUdhaBdt5fG6ZEmSTthslbGI",
@@ -16,4 +17,12 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
 
+
+const db = getFirestore();
+export const getUsers = await getDocs(collection(db, "users"));
+//getUsers.forEach((doc) => {
+  //console.log(doc.data());
+  //console.log(doc.data().name);
+  //console.log(doc.data().displayName);
+//});
 

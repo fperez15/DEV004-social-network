@@ -1,6 +1,9 @@
 import { getAuth, signOut } from "firebase/auth";
 import navigate from "../router/navigate.js";
+import { getUsers } from "../lib/fireBase.js";
 export const feed = () => {
+
+
   const feedSection = document.createElement("section");
   feedSection.className = "feedSection";
   feedSection.id = "feedSection";
@@ -53,16 +56,18 @@ export const feed = () => {
       //console.log("  Photo URL: " + profile.photoURL);
     });
   }
-  const user = auth.currentUser;
-  if (user !== null) {
-    // The user object has basic properties such as display name, email, etc.
-    const name = user.name;
-    //const email = user.email;
-  //  const photoURL = user.photoURL;
-    //const emailVerified = user.emailVerified;
-   // const uid = user.uid;
-   console.log("NOMBRE", name);
+
+  const filterName = (nameUser, getUsers) => {
+    
   }
+  
+  getUsers.forEach((doc) => {
+    console.log(doc.data().name);
+    //console.log(doc.data().name);
+    //console.log(doc.data().displayName);
+  });
+  console.log("Que hace filter name", filterName);
+
 
   feedNav.appendChild(logo);
   feedNav.appendChild(userMenu);
