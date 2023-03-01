@@ -73,6 +73,12 @@
   width: 150px;
   padding: 10px 15px 10px 15px;
 }
+.logoFeed {
+  max-width: 80%;
+  grid-column: 2;
+  justify-self: center;
+  
+}
 
 /* Style Feed */
 /* 
@@ -83,12 +89,7 @@
   
 }
 
-.logoFeed {
-  max-width: 80%;
-  grid-column: 2;
-  justify-self: center;
-  
-}
+
 
 .imgUser {
   max-width: 40%;
@@ -108,7 +109,7 @@
   height: 100%;
   left: 0;
   background-color: #f3d2c1;
-  width: 90px;
+  width: 60px;
   overflow: hidden;
   transition: width 0.2s linear;
   box-shadow: 0 20px 35px #001858 ;
@@ -116,7 +117,7 @@
 }
 
 .feedNav:hover {
-  width: 280px;
+  width: 170px;
   transition: all 0.5s ease;
 
 }
@@ -148,6 +149,8 @@ li {
   display: table;
   width: 300px;
   background-color: #f3d2c1;
+  display: flex;
+gap: 10px;
 
 }
 
@@ -157,6 +160,7 @@ li {
   font-weight: bold;
   border-radius: 5px;
   padding: 5px;
+  
  
 }
 
