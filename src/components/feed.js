@@ -8,33 +8,48 @@ export const feed = () => {
   const feedSection = document.createElement("section");
   feedSection.className = "feedSection";
   feedSection.id = "feedSection";
-
-  const feedNav = document.createElement("nav");
-  feedNav.id = "feedNav";
+  
   const logo = document.createElement("img");
   logo.className = "logoFeed";
   logo.id = "logoFeed";
   logo.src = "./img/logo.png";
-
+  
+  const feedNav = document.createElement("nav");
+  feedNav.id = "feedNav";
+  feedNav.className = "feedNav";
+  
+  const ulMenu = document.createElement("ul");
+  ulMenu.className = "ulMenu";
+ 
   const imgUser = document.createElement("img");
   imgUser.className = "imgUser";
-
-  const userMenu = document.createElement("div");
-  userMenu.className = "userMenu";
+  const liImg= document.createElement("li")
+  liImg.className = "liImg";
+  
+  const userName = document.createElement("h5");
+  userName.className = "userName";
+  const liName= document.createElement("li")
+  liName.className = "liName";
 
   const btnLogout = document.createElement("button");
   btnLogout.type = "submit";
   btnLogout.className = "btnLogout";
   btnLogout.id = "btnLogout";
   btnLogout.textContent = "LOGOUT";
-  btnLogout.style.display = "none";
+  const liLogout= document.createElement("li")
+  liLogout.className = "liLogout";
 
-  const userName = document.createElement("h5");
+  liImg.appendChild(imgUser);
+  liImg.appendChild(userName);
+  liLogout.appendChild(btnLogout);
 
-
-  userMenu.appendChild(imgUser);
-  userMenu.appendChild(userName);
-  userMenu.appendChild(btnLogout);
+  ulMenu.appendChild(liImg);
+  ulMenu.appendChild(liName);
+  ulMenu.appendChild(liLogout);
+    
+  feedNav.appendChild(ulMenu);
+  feedSection.appendChild(feedNav);
+  feedSection.appendChild(logo);
 
   const userGoogle = auth.currentUser;
   console.log("usuario", userGoogle);
@@ -70,10 +85,7 @@ export const feed = () => {
     });
   }
 
-    feedNav.appendChild(logo);
-  feedNav.appendChild(userMenu);
-
-  feedSection.appendChild(feedNav);
+  
 
   imgUser.addEventListener("click", () => {
     btnLogout.style.display = "block";
