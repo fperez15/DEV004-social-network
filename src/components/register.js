@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
 import { auth } from "../lib/fireBase.js";
 import navigate from "../router/navigate.js";
-import { getFirestore, addDoc, collection } from "firebase/firestore";
+import { getFirestore, setDoc,doc} from "firebase/firestore";
 
 
 export const register = () => {
@@ -66,10 +66,10 @@ export const register = () => {
         email,
         password
       );
-      console.log(UserCredentials);
+      console.log("usuarioname",UserCredentials);
       alert("Your account has been created successfuly.");
       navigate("/");
-      saveUser();
+     saveUser(UserCredentials.user.uid);
     } catch (error) {
            
       const errorCode = error.code;
@@ -86,9 +86,9 @@ export const register = () => {
   });
 
   const db = getFirestore();
-  function saveUser() {
-    addDoc(collection(db, "users"), {
-      name: inpName.value,
+  function saveUser(uid) {
+    setDoc(doc(db, "users",uid), {
+      displayName: inpName.value,
       email: inpEmail.value,
       password: inpPassword.value,
       date: inpDate.value,

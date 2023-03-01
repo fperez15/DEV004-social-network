@@ -1,6 +1,7 @@
 import { getAuth, signOut } from "firebase/auth";
 import navigate from "../router/navigate.js";
-import { getUsers } from "../lib/fireBase.js";
+import {  getDoc, doc } from "firebase/firestore";
+import {db, auth} from "../lib/fireBase.js"
 export const feed = () => {
 
 
@@ -35,11 +36,10 @@ export const feed = () => {
   userMenu.appendChild(userName);
   userMenu.appendChild(btnLogout);
 
-  const auth = getAuth();
   const userGoogle = auth.currentUser;
   console.log("usuario", userGoogle);
   if (userGoogle !== null) {
-    userGoogle.providerData.forEach((profile) => {
+    userGoogle.providerData.forEach(async(profile) => {
       let photo = profile.photoURL;
       imgUser.src = photo;
 
@@ -49,6 +49,19 @@ export const feed = () => {
       if (photo === null) {
         imgUser.src = "./img/user.png";
       }
+       const docRef = doc(db, "users", userGoogle.uid);
+      const docSnap = await getDoc(docRef);
+      console.log("snap",docSnap)
+      if (docSnap.exists()) {
+        let name = userGoogle.uid;
+      userName.textContent = name;
+        console.log("Document data:", docSnap.data().name);
+
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+
       //console.log("Sign-in provider: " + profile.providerId);
       //console.log("  Provider-specific UID: " + profile.uid);
       //console.log("  Name: " + profile.displayName);
@@ -57,19 +70,7 @@ export const feed = () => {
     });
   }
 
-  const filterName = (nameUser, getUsers) => {
-    
-  }
-  
-  getUsers.forEach((doc) => {
-    console.log(doc.data().name);
-    //console.log(doc.data().name);
-    //console.log(doc.data().displayName);
-  });
-  console.log("Que hace filter name", filterName);
-
-
-  feedNav.appendChild(logo);
+    feedNav.appendChild(logo);
   feedNav.appendChild(userMenu);
 
   feedSection.appendChild(feedNav);
