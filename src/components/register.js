@@ -1,8 +1,8 @@
-import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
-import { auth } from "../lib/fireBase.js";
+
+
 import navigate from "../router/navigate.js";
 import { getFirestore, setDoc,doc} from "firebase/firestore";
-
+import {createUser}from "../controller/auth.js"
 
 export const register = () => {
   const registerSection = document.createElement("section");
@@ -60,16 +60,29 @@ export const register = () => {
     const email = formRegister["email"].value;
     const password = formRegister["password"].value;
 
-    try {
-      const UserCredentials = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      console.log("usuarioname",UserCredentials);
-      alert("Your account has been created successfuly.");
-      navigate("/");
-     saveUser(UserCredentials.user.uid);
+    try { createUser( email, password).then(
+      (user)=>{
+       // alert("Your account has been created successfuly.");
+        swal({
+          title: "Your account has been created successfuly!",
+          text: "You clicked the button!",
+          icon: "success",
+          button: "Aww yiss!",
+        });
+        saveUser(user.uid);
+        navigate("/");
+      }
+
+    )
+      //   const UserCredentials = await createUserWithEmailAndPassword(
+    //     auth,
+    //     email,
+    //     password
+    //   );
+    //   console.log("usuarioname",UserCredentials);
+    //   alert("Your account has been created successfuly.");
+    //  navigate("/");
+    //  saveUser(UserCredentials.user.uid);
     } catch (error) {
            
       const errorCode = error.code;

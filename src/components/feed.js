@@ -3,9 +3,7 @@ import navigate from "../router/navigate.js";
 import {  getDoc, doc } from "firebase/firestore";
 import {db, auth} from "../lib/fireBase.js"
 export const feed = () => {
-
-
-  const feedSection = document.createElement("section");
+ const feedSection = document.createElement("section");
   feedSection.className = "feedSection";
   feedSection.id = "feedSection";
   
