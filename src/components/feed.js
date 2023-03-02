@@ -49,10 +49,10 @@ export const feed = () => {
   feedSection.appendChild(feedNav);
   feedSection.appendChild(logo);
 
-  const userGoogle = auth.currentUser;
-  console.log("usuario", userGoogle);
-  if (userGoogle !== null) {
-    userGoogle.providerData.forEach(async(profile) => {
+  const user = auth.currentUser;
+  console.log("usuario", user);
+  if (user !== null) {
+    user.providerData.forEach(async(profile) => {
       let photo = profile.photoURL;
       imgUser.src = photo;
 
@@ -62,13 +62,13 @@ export const feed = () => {
       if (photo === null) {
         imgUser.src = "./img/user.png";
       }
-       const docRef = doc(db, "users", userGoogle.uid);
+       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
-      console.log("snap",docSnap)
+      console.log("snap",user)
       if (docSnap.exists()) {
-        let name = userGoogle.uid;
+        let name = docSnap.data().displayName;
       userName.textContent = name;
-        console.log("Document data:", docSnap.data().name);
+        console.log("Document data:", docSnap.data().displayName);
 
       } else {
         // doc.data() will be undefined in this case
