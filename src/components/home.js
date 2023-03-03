@@ -1,7 +1,5 @@
-import { signInWithEmailAndPassword, GoogleAuthProvider } from "firebase/auth";
-import { auth, provider } from "../lib/fireBase.js";
 import navigate from "../router/navigate.js";
-import { signInWithPopup } from "firebase/auth";
+import {logIn,logInGoogle} from "../controller/auth.js"
 
 export const home = () => {
   const homeSection = document.createElement("section");
@@ -75,50 +73,13 @@ export const home = () => {
   //Login with email
   formLogin.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const email = formLogin["email"].value;
-    const password = formLogin["password"].value;
-
-    try {
-      const credentials = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      console.log(credentials);
-      localStorage.setItem("idUser", credentials.user.uid);
-      navigate("/feed");
-    } catch (error) {
-      //Poner alertas de errores PENDIENTE
-      console.log(error);
-    }
-  });
+    logIn(inpEmail.value, inpPassword.value);
+    });
 
   //Login with Google
-  btnGoogle.addEventListener("click", async () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-      
-        navigate("/feed");
-        // ...
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-      });
-
-
-
+  btnGoogle.addEventListener("click",  () => {
+    logInGoogle();
+    
  });
 
   return homeSection;

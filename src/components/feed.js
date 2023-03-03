@@ -64,15 +64,15 @@ export const feed = () => {
       }
        const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
-      console.log("snap",user)
+      //console.log("snap",user)
       if (docSnap.exists()) {
         let name = docSnap.data().displayName;
       userName.textContent = name;
-        console.log("Document data:", docSnap.data().displayName);
+       // console.log("Document data:", docSnap.data().displayName);
 
       } else {
         // doc.data() will be undefined in this case
-        console.log("No such document!");
+        //console.log("No such document!");
       }
 
       //console.log("Sign-in provider: " + profile.providerId);
@@ -96,7 +96,7 @@ export const feed = () => {
         navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+        //console.log(error);
       });
   });
 
