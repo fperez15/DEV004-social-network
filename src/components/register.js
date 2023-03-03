@@ -1,41 +1,41 @@
-import {createUser}from "../controller/auth.js"
+import { createUser } from '../controller/auth.js';
 
 export const register = () => {
-  const registerSection = document.createElement("section");
-  registerSection.id = "regSection";
-  const logo = document.createElement("img");
-  logo.className = "logo";
-  logo.id = "logo";
-  logo.src = "./img/logo.png";
+  const registerSection = document.createElement('section');
+  registerSection.id = 'regSection';
+  const logo = document.createElement('img');
+  logo.className = 'logo';
+  logo.id = 'logo';
+  logo.src = './img/logo.png';
 
-  const formRegister = document.createElement("form");
-  formRegister.className = "formRegister";
+  const formRegister = document.createElement('form');
+  formRegister.className = 'formRegister';
 
-  const inpName = document.createElement("input");
-  inpName.className = "form";
-  inpName.id = "name";
-  inpName.type = "text";
-  inpName.placeholder = "Name";
-  const inpEmail = document.createElement("input");
-  inpEmail.className = "form";
-  inpEmail.id = "email";
-  inpEmail.type = "email";
-  inpEmail.placeholder = "Email";
-  const inpDate = document.createElement("input");
-  inpDate.className = "form";
-  inpDate.id = "inpDate";
-  inpDate.type = "date";
-  inpDate.placeholder = "date";
-  const inpPassword = document.createElement("input");
-  inpPassword.className = "form";
-  inpPassword.id = "password";
-  inpPassword.placeholder = "Password";
-  inpPassword.type = "password";
-  const btnRegister = document.createElement("button");
-  btnRegister.type = "submit";
-  btnRegister.className = "btnRegister";
-  btnRegister.id = "btnRegister";
-  btnRegister.textContent = "REGISTER";
+  const inpName = document.createElement('input');
+  inpName.className = 'form';
+  inpName.id = 'name';
+  inpName.type = 'text';
+  inpName.placeholder = 'Name';
+  const inpEmail = document.createElement('input');
+  inpEmail.className = 'form';
+  inpEmail.id = 'email';
+  inpEmail.type = 'email';
+  inpEmail.placeholder = 'Email';
+  const inpDate = document.createElement('input');
+  inpDate.className = 'form';
+  inpDate.id = 'inpDate';
+  inpDate.type = 'date';
+  inpDate.placeholder = 'date';
+  const inpPassword = document.createElement('input');
+  inpPassword.className = 'form';
+  inpPassword.id = 'password';
+  inpPassword.placeholder = 'Password';
+  inpPassword.type = 'password';
+  const btnRegister = document.createElement('button');
+  btnRegister.type = 'submit';
+  btnRegister.className = 'btnRegister';
+  btnRegister.id = 'btnRegister';
+  btnRegister.textContent = 'REGISTER';
 
   formRegister.appendChild(inpName);
   formRegister.appendChild(inpEmail);
@@ -46,10 +46,9 @@ export const register = () => {
   registerSection.appendChild(logo);
   registerSection.appendChild(formRegister);
 
-  formRegister.addEventListener("submit", async (e) => {
+  formRegister.addEventListener('submit', async (e) => {
     e.preventDefault();
-     createUser( inpEmail.value, inpPassword.value,inpName.value, inpDate.value);
-
-})
-return registerSection;
-}
+    createUser(inpEmail.value, inpPassword.value, inpName.value, inpDate.value);
+  });
+  return registerSection;
+};

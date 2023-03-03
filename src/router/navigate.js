@@ -1,14 +1,10 @@
-import { routes } from "./routes";
+import { routes } from './routes';
 
-export default function onNavigate(pathname) {
-  const rootSection = document.getElementById("root");
+export function onNavigate(pathname) {
+  const rootSection = document.getElementById('root');
   while (rootSection.firstChild) {
-    rootSection.firstChild.remove()
+    rootSection.firstChild.remove();
   }
-  window.history.pushState(
-    {},
-    pathname,
-    window.location.origin + pathname,
-  );
+  window.history.pushState({}, pathname, window.location.origin + pathname);
   rootSection.appendChild(routes[pathname]());
-};
+}

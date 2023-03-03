@@ -1,13 +1,12 @@
-import { routes } from "./router/routes";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./lib/fireBase";
-import navigate from "./router/navigate.js";
-const rootSection = document.getElementById("root");
+import { routes } from './router/routes';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './lib/fireBase';
+import { onNavigate } from './router/navigate.js';
+const rootSection = document.getElementById('root');
 
 const component = routes[window.location.pathname];
 
 rootSection.appendChild(component());
-
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -16,15 +15,13 @@ onAuthStateChanged(auth, (user) => {
     // https://firebase.google.com/docs/reference/js/firebase.User
     const uid = user.uid;
     const name = user.displayName;
-    //console.log("name", name);
+    //console.log('name', name);
     // ...
-    navigate("/feed");
+    onNavigate('/feed');
   } else {
-    //console.log("usuario-no-login")
+    //console.log('usuario-no-login')
     // User is signed out
     // ...
-    navigate("/");
+    onNavigate('/');
   }
 });
-
-
