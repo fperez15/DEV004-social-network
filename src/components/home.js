@@ -68,7 +68,8 @@ export const home = (onNavigate) => {
   homeSection.appendChild(btnHomeRegister);
 
   // Go to /register
-  btnHomeRegister.addEventListener("click", () => onNavigate("/register"));
+  btnHomeRegister.addEventListener("click", () =>onNavigate("/register"));
+ 
 
   // Login with email
   formLogin.addEventListener("submit", async (e) => {

@@ -1,17 +1,14 @@
 import { routes } from './router/routes';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './lib/fireBase';
-//import { onNavigate } from './router/navigate.js';
+import { onNavigate } from './router/navigate.js';
 const rootSection = document.getElementById('root');
 
 const component = routes[window.location.pathname];
-
-rootSection.appendChild(component());
-
-export const nav = (onNavigate) =>{
+window.onpopstate = ()=>{
+    rootSection.append(component(onNavigate))
+}
 onAuthStateChanged(auth, (user) => {
-
-
 
   if (user) {
     //console.log(user)
@@ -28,4 +25,4 @@ onAuthStateChanged(auth, (user) => {
     // ...
     onNavigate('/');
   }
-});}
+});
