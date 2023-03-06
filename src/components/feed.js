@@ -1,9 +1,9 @@
 import { signOut } from 'firebase/auth';
 import { getDoc, doc } from 'firebase/firestore';
-import { onNavigate } from '../router/navigate.js';
+//import { onNavigate } from '../router/navigate.js';
 import { db, auth } from '../lib/fireBase.js';
 
-export const feed = () => {
+export const feed = (onNavigate) => {
   const feedSection = document.createElement('section');
   feedSection.className = 'feedSection';
   feedSection.id = 'feedSection';
