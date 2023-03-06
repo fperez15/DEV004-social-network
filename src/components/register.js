@@ -1,4 +1,4 @@
-import { createUser } from '../controller/auth.js';
+import { createUser } from '../lib/fireBase.js';
 
 export const register = () => {
   const registerSection = document.createElement('section');

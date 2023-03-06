@@ -3,7 +3,7 @@ import { getDoc, doc } from 'firebase/firestore';
 import { onNavigate } from '../router/navigate.js';
 import { db, auth } from '../lib/fireBase.js';
 
-export const feed = (onNavigate) => {
+export const feed = () => {
   const feedSection = document.createElement('section');
   feedSection.className = 'feedSection';
   feedSection.id = 'feedSection';
@@ -82,16 +82,14 @@ export const feed = (onNavigate) => {
     });
   }
 
-  imgUser.addEventListener('click', () => {
-    btnLogout.style.display = 'block';
-  });
-
   btnLogout.addEventListener('click', async () => {
     signOut(auth)
       .then(() => {
         onNavigate('/');
       })
-      .catch((error) => { console.log(error); });
+      .catch((error) => {
+        console.log(error);
+      });
   });
   return feedSection;
 };
