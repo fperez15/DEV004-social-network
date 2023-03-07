@@ -1,4 +1,5 @@
 import { createUser } from '../lib/fireBase.js';
+import { onNavigate } from '../router/index.js';
 
 export const register = () => {
   const registerSection = document.createElement('section');
@@ -48,7 +49,11 @@ export const register = () => {
 
   formRegister.addEventListener('submit', async (e) => {
     e.preventDefault();
-    createUser(inpEmail.value, inpPassword.value, inpName.value, inpDate.value);
+       try{ createUser(inpEmail.value, inpPassword.value, inpName.value, inpDate.value);
+        onNavigate('/');
+        console.log("hola")
+    }
+    catch(error){console.log(error)}
   });
   return registerSection;
 };

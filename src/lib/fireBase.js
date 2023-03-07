@@ -48,13 +48,7 @@ export const createUser = (email, password, displayName, date) => {
     .then((usercredentials) => {
       const user = usercredentials.user;
       saveUser(displayName, email, password, date, user.uid);
-      swal({
-        title: 'Your account has been created successfuly!',
-        text: 'You clicked the button!',
-        icon: 'success',
-        button: 'Aww yiss!',
-      });
-      //   onNavigate('/');
+      
     })
     .catch((error) => {
       const errorCode = error.code;
