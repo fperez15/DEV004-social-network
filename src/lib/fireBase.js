@@ -1,10 +1,10 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
 import {
   getFirestore,
   setDoc,
   doc,
   // createUserWithEmailAndPassword,
-} from "firebase/firestore";
+} from 'firebase/firestore';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -12,28 +12,29 @@ import {
   signInWithPopup,
   getAuth,
   onAuthStateChanged,
-} from "firebase/auth";
-import { onNavigate } from "../router/navigate.js";
+} from 'firebase/auth';
+//import { onNavigate } from '../router/routes';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAOUeeD-y4TUdhaBdt5fG6ZEmSTthslbGI",
-  authDomain: "home-helpers-74055.firebaseapp.com",
-  projectId: "home-helpers-74055",
-  storageBucket: "home-helpers-74055.appspot.com",
-  messagingSenderId: "914508630139",
-  appId: "1:914508630139:web:5ca89311430a8e95993ade",
-  measurementId: "G-XJVC9T7JX1",
+  apiKey: 'AIzaSyAOUeeD-y4TUdhaBdt5fG6ZEmSTthslbGI',
+  authDomain: 'home-helpers-74055.firebaseapp.com',
+  projectId: 'home-helpers-74055',
+  storageBucket: 'home-helpers-74055.appspot.com',
+  messagingSenderId: '914508630139',
+  appId: '1:914508630139:web:5ca89311430a8e95993ade',
+  measurementId: 'G-XJVC9T7JX1',
 };
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+console.log(auth)
 export const provider = new GoogleAuthProvider();
 export const db = getFirestore(app);
 
 const db2 = getFirestore();
 // Firestore conection
 const saveUser = (displayName, email, password, date, uid) => {
-  setDoc(doc(db2, "users", uid), {
+  setDoc(doc(db2, 'users', uid), {
     displayName,
     email,
     password,
@@ -48,19 +49,19 @@ export const createUser = (email, password, displayName, date) => {
       const user = usercredentials.user;
       saveUser(displayName, email, password, date, user.uid);
       swal({
-        title: "Your account has been created successfuly!",
-        text: "You clicked the button!",
-        icon: "success",
-        button: "Aww yiss!",
+        title: 'Your account has been created successfuly!',
+        text: 'You clicked the button!',
+        icon: 'success',
+        button: 'Aww yiss!',
       });
-      //   onNavigate("/");
+      //   onNavigate('/');
     })
     .catch((error) => {
       const errorCode = error.code;
-      if (errorCode === "auth/weak-password") {
-        alert("The password must be at least 6 characters.");
-      } else if (errorCode === "auth/network-request-failed") {
-        alert("Fields cannot be empty.");
+      if (errorCode === 'auth/weak-password') {
+        alert('The password must be at least 6 characters.');
+      } else if (errorCode === 'auth/network-request-failed') {
+        alert('Fields cannot be empty.');
       }
       console.log(errorCode);
     });
@@ -91,20 +92,46 @@ export const logInGoogle = () => {
       // ...
     });
 };
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    //console.log(user)
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-    const uid = user.uid;
-    const name = user.displayName;
-    //console.log('name', name);
-    //     // ...
-    onNavigate("/feed");
-  } else {
-    //console.log('usuario-no-login')
-    // User is signed out
-    // ...
-    onNavigate("/");
-  }
-});
+
+export function authStateChangedEvent(cb) {
+  onAuthStateChanged(auth, (user) => cb(user));
+  // if (user) {
+  //   //console.log(user)
+  //   // User is signed in, see docs for a list of available properties
+  //   // https://firebase.google.com/docs/reference/js/firebase.User
+  //   const uid = user.uid;
+  //   const name = user.displayName;
+  //   //console.log('name', name);
+  //   //     // ...
+  //   onNavigate('/feed');
+  // } else {
+  //   //console.log('usuario-no-login')
+  //   // User is signed out
+  //   // ...
+  //   onNavigate('/');
+  // }
+  // });
+}
+
+
+// onAuthStateChanged(auth, (user) => {
+//   if (user) {
+//     //console.log(user)
+//     // User is signed in, see docs for a list of available properties
+//     // https://firebase.google.com/docs/reference/js/firebase.User
+//     const uid = user.uid;
+//     const name = user.displayName;
+//     //console.log('name', name);
+//     //     // ...
+//     onNavigate('/feed');
+//   } else {
+//     //console.log('usuario-no-login')
+//     // User is signed out
+//     // ...
+//     onNavigate('/');
+//   }
+// });
+
+// function createPost() {
+//   // codigo de firebase
+// }
