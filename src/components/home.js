@@ -1,4 +1,4 @@
-import { onNavigate } from '../router/navigate.js';
+import { onNavigate } from '../router';
 import { logIn, logInGoogle } from '../lib/fireBase.js';
 
 export const home = () => {
@@ -91,6 +91,7 @@ export const home = () => {
     logInGoogle().then(() => {
       onNavigate('/feed');
     });
+    // catch
   });
 
   return homeSection;
