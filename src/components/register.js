@@ -49,11 +49,11 @@ export const register = () => {
 
   formRegister.addEventListener('submit', async (e) => {
     e.preventDefault();
-       try{ createUser(inpEmail.value, inpPassword.value, inpName.value, inpDate.value);
-        onNavigate('/');
-        console.log("hola")
+    try {
+      createUser(inpEmail.value, inpPassword.value, inpName.value, inpDate.value);
+      onNavigate('/');
     }
-    catch(error){console.log(error)}
+    catch (error) {return (error)}
   });
   return registerSection;
 };

@@ -88,7 +88,7 @@ export const logInGoogle = () => {
 };
 
 export function authStateChangedEvent(cb) {
-  onAuthStateChanged(auth, (user) => cb(user));
+  onAuthStateChanged(auth.currentUser, (user) => cb(user));
   // if (user) {
   //   //console.log(user)
   //   // User is signed in, see docs for a list of available properties
