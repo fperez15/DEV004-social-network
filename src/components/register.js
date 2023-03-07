@@ -52,8 +52,8 @@ export const register = () => {
     try {
       createUser(inpEmail.value, inpPassword.value, inpName.value, inpDate.value);
       onNavigate('/');
-    }
-    catch (error) {return (error)}
+      return true;
+    } catch (error) { return error; }
   });
   return registerSection;
 };

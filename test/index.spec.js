@@ -1,5 +1,5 @@
 // importamos la funcion que vamos a testear
-import {createUser} from '../src/controller/auth.js';
+import { createUser } from '../src/lib/fireBase.js';
 
 describe('createUser', () => {
   it('debería ser una función', () => {

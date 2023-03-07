@@ -37,7 +37,7 @@ export const feed = () => {
   btnLogout.textContent = 'LOGOUT';
   const liLogout = document.createElement('li');
   liLogout.className = 'liLogout';
-
+  
   liImg.appendChild(imgUser);
   liImg.appendChild(userName);
   liLogout.appendChild(btnLogout);
@@ -47,8 +47,23 @@ export const feed = () => {
   ulMenu.appendChild(liLogout);
 
   feedNav.appendChild(ulMenu);
+  const postArticle = document.createElement('article');
+  postArticle.className = 'postArticle';
+  const btnPost = document.createElement('div');
+  btnPost.className = 'btnPost';
+  const imgPost = document.createElement('img');
+  imgPost.className = 'imgPost';
+  imgPost.src = 'src/img/imgPost.png'
+  const txtPost = document.createElement('h5');
+  txtPost.className = 'txtPost';
+  txtPost.textContent = 'NEW POST';
+  btnPost.appendChild(imgPost);
+  btnPost.appendChild(txtPost);
+  postArticle.appendChild(btnPost);
+
   feedSection.appendChild(feedNav);
   feedSection.appendChild(logo);
+  feedSection.appendChild(postArticle);
 
   const user = auth.currentUser;
   if (user !== null) {

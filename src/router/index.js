@@ -9,7 +9,7 @@ export const onNavigate = (pathname) => {
 };
 
 export const addRoutes = (routes) => {
-  return Object.keys(routes).reduce((currentRoutes, pathname) => {
+  Object.keys(routes).reduce((currentRoutes, pathname) => {
     // seria buena agregar validaciones
     currentRoutes[pathname] = routes[pathname];
     return currentRoutes;

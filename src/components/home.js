@@ -88,10 +88,8 @@ export const home = () => {
 
   // Login with Google
   btnGoogle.addEventListener('click', () => {
-    logInGoogle().then(() => {
-      onNavigate('/feed');
-    });
-    // catch
+    logInGoogle();
+    onNavigate('/feed');
   });
 
   return homeSection;

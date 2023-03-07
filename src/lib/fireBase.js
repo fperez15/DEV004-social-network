@@ -13,7 +13,6 @@ import {
   getAuth,
   onAuthStateChanged,
 } from 'firebase/auth';
-//import { onNavigate } from '../router/routes';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAOUeeD-y4TUdhaBdt5fG6ZEmSTthslbGI',
@@ -27,7 +26,7 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-console.log(auth)
+console.log(auth);
 export const provider = new GoogleAuthProvider();
 export const db = getFirestore(app);
 
@@ -48,7 +47,6 @@ export const createUser = (email, password, displayName, date) => {
     .then((usercredentials) => {
       const user = usercredentials.user;
       saveUser(displayName, email, password, date, user.uid);
-      
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -62,12 +60,11 @@ export const createUser = (email, password, displayName, date) => {
 };
 
 // login function
-export const logIn = (email, password) =>
-  signInWithEmailAndPassword(auth, email, password);
+export const logIn = (email, password) => signInWithEmailAndPassword(auth, email, password);
 
 // login with google
 export const logInGoogle = () => {
-  return signInWithPopup(auth, provider)
+  signInWithPopup(auth, provider)
     .then((result) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
@@ -84,48 +81,12 @@ export const logInGoogle = () => {
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
+      return {
+        errorCode, errorMessage, email, credential,
+      };
     });
 };
 
 export function authStateChangedEvent(cb) {
-  onAuthStateChanged(auth.currentUser, (user) => cb(user));
-  // if (user) {
-  //   //console.log(user)
-  //   // User is signed in, see docs for a list of available properties
-  //   // https://firebase.google.com/docs/reference/js/firebase.User
-  //   const uid = user.uid;
-  //   const name = user.displayName;
-  //   //console.log('name', name);
-  //   //     // ...
-  //   onNavigate('/feed');
-  // } else {
-  //   //console.log('usuario-no-login')
-  //   // User is signed out
-  //   // ...
-  //   onNavigate('/');
-  // }
-  // });
+  onAuthStateChanged(auth, (user) => cb(user));
 }
-
-
-// onAuthStateChanged(auth, (user) => {
-//   if (user) {
-//     //console.log(user)
-//     // User is signed in, see docs for a list of available properties
-//     // https://firebase.google.com/docs/reference/js/firebase.User
-//     const uid = user.uid;
-//     const name = user.displayName;
-//     //console.log('name', name);
-//     //     // ...
-//     onNavigate('/feed');
-//   } else {
-//     //console.log('usuario-no-login')
-//     // User is signed out
-//     // ...
-//     onNavigate('/');
-//   }
-// });
-
-// function createPost() {
-//   // codigo de firebase
-// }
