@@ -53,7 +53,7 @@ export const feed = () => {
   btnPost.className = 'btnPost';
   const imgPost = document.createElement('img');
   imgPost.className = 'imgPost';
-  imgPost.src = 'src/img/imgPost.png'
+  imgPost.src = './img/imgPost.png'
   const txtPost = document.createElement('h5');
   txtPost.className = 'txtPost';
   txtPost.textContent = 'NEW POST';
