@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
 * {
   background-color: #fef6e4;
-  font-family: 'Questrial', sans-serif;
+  font-family: "Questrial", sans-serif;
 }
 #regSection,
 #homeSection {
@@ -110,11 +110,11 @@
   width: 60px;
   overflow: hidden;
   transition: width 0.2s linear;
- }
+}
 
 .feedNav:hover {
   width: 170px;
-  height: 100px ;
+  height: 100px;
   transition: all 0.5s ease;
   background-color: #f3d2c1;
 }
@@ -122,7 +122,6 @@
 .ulMenu {
   margin: 5px 0 0 5px;
   padding: 0;
-  
 
   /* box-sizing: border-box; */
 }
@@ -166,36 +165,68 @@ li:hover {
   color: #fef6e4;
 }
 
-.feedSection{
+.feedSection {
   /* display: grid;
   grid-template-columns: repeat(3, 1fr); */
-  display:flex;
+  display: flex;
   flex-direction: column;
-  
-  }
-  .logoFeed {
-    max-width: 20%;
-    align-self: center;
-  }
-  .postArticle{
-    background-color: #f3d2c1;
-    
-   
-  }
-  .btnPost {
-    background-color: #f3d2c1;
-    display: flex;
-    height: 40px;
-    line-height: 0%;
-    gap: 10px;
-      
-  }
-  .txtPost{
-    background-color: #f3d2c1;
-    color: #001858;
-       
-  }
-  .imgPost{
-    background-color: #f3d2c1;
-    margin-top: 10px;
-    }
+}
+.logoFeed {
+  max-width: 20%;
+  align-self: center;
+}
+.divPost {
+  background-color: #f3d2c1;
+  display: flex;
+  height: 40px;
+  line-height: 0%;
+  gap: 10px;
+}
+.txtPost {
+  background-color: #f3d2c1;
+  color: #001858;
+}
+.imgPost {
+  width: 20%;
+  background-color: #f3d2c1;
+}
+/* estilo de post */
+
+.postSection {
+  display: flex;
+  flex-direction: column;
+}
+.logoPost {
+  max-width: 20%;
+  align-self: center;
+}
+.articlePost{
+  width: 70%;
+ height: 250px;
+  background-color: #f3d2c1;
+  border-radius: 8px;
+  align-self: center;
+}
+.inpPost{
+  width: 70%;
+  height: 40%;
+  align-self: center;
+  background-color: transparent;
+
+}
+.btnCancelPost{
+  background-color: #f582ae;
+  color: #001858;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 5px;
+  border: none;
+}
+.btnCreatePost{
+  background-color: #f582ae;
+  color: #001858;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 5px;
+  border: none;
+}

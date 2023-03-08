@@ -47,30 +47,26 @@ export const feed = () => {
   ulMenu.appendChild(liLogout);
 
   feedNav.appendChild(ulMenu);
-  const postArticle = document.createElement('article');
-  postArticle.className = 'postArticle';
-  const btnPost = document.createElement('div');
-  btnPost.className = 'btnPost';
+  const divPost = document.createElement('div');
+  divPost.className = 'divPost';
   const imgPost = document.createElement('img');
   imgPost.className = 'imgPost';
   imgPost.src = './img/imgPost.png'
   const txtPost = document.createElement('h5');
   txtPost.className = 'txtPost';
   txtPost.textContent = 'NEW POST';
-  btnPost.appendChild(imgPost);
-  btnPost.appendChild(txtPost);
-  postArticle.appendChild(btnPost);
+  divPost.appendChild(imgPost);
+  divPost.appendChild(txtPost);
 
   feedSection.appendChild(feedNav);
   feedSection.appendChild(logo);
-  feedSection.appendChild(postArticle);
+  feedSection.appendChild(divPost);
 
   const user = auth.currentUser;
   if (user !== null) {
     user.providerData.forEach(async (profile) => {
       const photo = profile.photoURL;
       imgUser.src = photo;
-
       const name = profile.displayName;
       userName.textContent = name;
 
@@ -106,5 +102,7 @@ export const feed = () => {
         console.log(error);
       });
   });
+  txtPost.addEventListener('click', () => onNavigate('/post'));
+  imgPost.addEventListener('click', () => onNavigate('/post'));
   return feedSection;
 };
