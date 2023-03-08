@@ -1,4 +1,6 @@
 import { onNavigate } from '../router';
+import { getDoc, doc } from 'firebase/firestore';
+import { db, auth } from '../lib/fireBase.js';
 
 export const post = () =>{
     const postSection = document.createElement('section');
@@ -33,6 +35,38 @@ export const post = () =>{
     postSection.appendChild(articlePost);
 
     btnCancelPost.addEventListener('click', () => onNavigate('/feed'));
+    
+    const user = auth.currentUser;
+  if (user !== null) {
+    user.providerData.forEach(async (profile) => {
+      const photo = profile.photoURL;
+      userImg.src = photo;
+      const name = profile.displayName;
+      nameUser.textContent = name;
+      if (photo === null) {
+        userImg.src = './img/user.png';
+      }
+      const docRef = doc(db, 'users', user.uid);
+      const docSnap = await getDoc(docRef);
+      // console.log('snap',user)
+      if (docSnap.exists()) {
+        const nameF = docSnap.data().displayName;
+        nameUser.textContent = nameF;
+
+        //  console.log('Document data:', docSnap.data().displayName);
+      } else {
+        //  doc.data() will be undefined in this case
+        //  console.log('No such document!');
+      }
+
+      //  console.log('Sign-in provider: ' + profile.providerId);
+      //  console.log('  Provider-specific UID: ' + profile.uid);
+      //  console.log('  Name: ' + profile.displayName);
+      //  console.log('  Email: ' + profile.email);
+      //  console.log('  Photo URL: ' + profile.photoURL);
+    });
+  }
+
     
     return postSection
 }

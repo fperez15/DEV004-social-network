@@ -201,6 +201,9 @@ li:hover {
   align-self: center;
 }
 .articlePost{
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   width: 70%;
  height: 250px;
   background-color: #f3d2c1;
@@ -212,6 +215,10 @@ li:hover {
   height: 40%;
   align-self: center;
   background-color: transparent;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 5;
 
 }
 .btnCancelPost{
@@ -221,6 +228,11 @@ li:hover {
   border-radius: 5px;
   padding: 5px;
   border: none;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 5;
+  grid-row-end: 6;
+
 }
 .btnCreatePost{
   background-color: #f582ae;
@@ -229,4 +241,20 @@ li:hover {
   border-radius: 5px;
   padding: 5px;
   border: none;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+.userImg {
+  text-align: center;
+  display: flex;
+  transition: all 0.5s ease;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+.nameUser {
+  color: #001858;
+  background-color: transparent; 
 }
