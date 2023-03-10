@@ -1,46 +1,46 @@
-import { onNavigate } from '../router';
 import { getDoc, doc } from 'firebase/firestore';
+import { onNavigate } from '../router';
 import { db, auth } from '../lib/fireBase.js';
 
-export const post = () =>{
-    const postSection = document.createElement('section');
-    postSection.className = 'postSection';
-    const logoPost = document.createElement('img');
-    logoPost.className = 'logoPost';
-    logoPost.src = './img/logo.png';
+export const post = () => {
+  const postSection = document.createElement('section');
+  postSection.className = 'postSection';
+  const logoPost = document.createElement('img');
+  logoPost.className = 'logoPost';
+  logoPost.src = './img/logo.png';
 
-    const articlePost = document.createElement('article');
-    articlePost.className = 'articlePost';
-    const userImg = document.createElement('img');
-    userImg.className = 'userImg';
-    const nameUser= document.createElement('h6');
-    nameUser.className = 'nameUser';
-    const textArea = document.createElement('textarea');
-    textArea.name = 'textarea';
-    textArea.rows = "10";
-    textArea.cols = "50";
-    textArea.className = 'inpPost';
-    textArea.placeholder = 'What would you like to share?'
+  const articlePost = document.createElement('article');
+  articlePost.className = 'articlePost';
+  const userImg = document.createElement('img');
+  userImg.className = 'userImg';
+  const nameUser = document.createElement('h6');
+  nameUser.className = 'nameUser';
+  const textArea = document.createElement('textarea');
+  textArea.name = 'textarea';
+  textArea.rows = '10';
+  textArea.cols = '50';
+  textArea.className = 'inpPost';
+  textArea.placeholder = 'What would you like to share?';
 
-    const btnCancelPost = document.createElement('button');
-    btnCancelPost.className = 'btnCancelPost';
-    btnCancelPost.textContent = 'CANCEL';
-    const btnCreatePost = document.createElement('button');
-    btnCreatePost.className = 'btnCreatePost';
-    btnCreatePost.textContent = 'POST';
-    
-    articlePost.appendChild(userImg);
-    articlePost.appendChild(nameUser);
-    articlePost.appendChild(btnCancelPost);
-    articlePost.appendChild(btnCreatePost);
-    articlePost.appendChild(textArea);
+  const btnCancelPost = document.createElement('button');
+  btnCancelPost.className = 'btnCancelPost';
+  btnCancelPost.textContent = 'CANCEL';
+  const btnCreatePost = document.createElement('button');
+  btnCreatePost.className = 'btnCreatePost';
+  btnCreatePost.textContent = 'POST';
 
-    postSection.appendChild(logoPost);
-    postSection.appendChild(articlePost);
+  articlePost.appendChild(userImg);
+  articlePost.appendChild(nameUser);
+  articlePost.appendChild(btnCancelPost);
+  articlePost.appendChild(btnCreatePost);
+  articlePost.appendChild(textArea);
 
-    btnCancelPost.addEventListener('click', () => onNavigate('/feed'));
-    
-    const user = auth.currentUser;
+  postSection.appendChild(logoPost);
+  postSection.appendChild(articlePost);
+
+  btnCancelPost.addEventListener('click', () => onNavigate('/feed'));
+
+  const user = auth.currentUser;
   if (user !== null) {
     user.providerData.forEach(async (profile) => {
       const photo = profile.photoURL;
@@ -71,6 +71,5 @@ export const post = () =>{
     });
   }
 
-    
-    return postSection
-}
+  return postSection;
+};
