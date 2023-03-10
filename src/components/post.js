@@ -15,9 +15,13 @@ export const post = () => {
   userImg.className = 'userImg';
   const nameUser = document.createElement('h6');
   nameUser.className = 'nameUser';
-  const inpPost = document.createElement('input');
-  inpPost.className = 'inpPost';
-  inpPost.placeholder = 'What would you like to share?';
+  const textArea = document.createElement('textarea');
+  textArea.name = 'textarea';
+  textArea.rows = '10';
+  textArea.cols = '50';
+  textArea.className = 'inpPost';
+  textArea.placeholder = 'What would you like to share?';
+
   const btnCancelPost = document.createElement('button');
   btnCancelPost.className = 'btnCancelPost';
   btnCancelPost.textContent = 'CANCEL';
@@ -27,9 +31,9 @@ export const post = () => {
 
   articlePost.appendChild(userImg);
   articlePost.appendChild(nameUser);
-  articlePost.appendChild(inpPost);
   articlePost.appendChild(btnCancelPost);
   articlePost.appendChild(btnCreatePost);
+  articlePost.appendChild(textArea);
 
   postSection.appendChild(logoPost);
   postSection.appendChild(articlePost);

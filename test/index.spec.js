@@ -14,11 +14,16 @@ describe('createUser', () => {
 });
 
 jest.mock('@firebase/auth', () => ({
-  createUserWithEmailAndPassword: () => Promise.resolve({ currentUser: 'string' }),
+  createUserWithEmailAndPassword: () => Promise.resolve(
+    (user = 'email', 'password', 'displayName', 'date')),
+  updateProfile: () => ({}),
   getAuth: () => ({ currentUser: 'string' }),
+  signInWithEmailAndPassword: () => Promise.resolve({ user: 'string' }),
+  GoogleAuthProvider: class {},
+  signInWithPopup: () => Promise.resolve({ user: 'stringGoogle' }),
 
 }));
-jest.mock('../src/lib/fireBase.js');
+jest.mock('@firebase/firestore');
 
 describe('function createUser', () => {
   it('deberia crear un usuario', async () => {
