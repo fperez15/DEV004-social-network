@@ -37,7 +37,6 @@ export const feed = () => {
   btnLogout.textContent = 'LOGOUT';
   const liLogout = document.createElement('li');
   liLogout.className = 'liLogout';
-  
   liImg.appendChild(imgUser);
   liImg.appendChild(userName);
   liLogout.appendChild(btnLogout);
@@ -51,7 +50,7 @@ export const feed = () => {
   divPost.className = 'divPost';
   const imgPost = document.createElement('img');
   imgPost.className = 'imgPost';
-  imgPost.src = './img/imgPost.png'
+  imgPost.src = './img/imgPost.png';
   const txtPost = document.createElement('h5');
   txtPost.className = 'txtPost';
   txtPost.textContent = 'NEW POST';

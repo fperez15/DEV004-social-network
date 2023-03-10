@@ -30,7 +30,7 @@ console.log(auth);
 export const provider = new GoogleAuthProvider();
 export const db = getFirestore(app);
 
-const db2 = getFirestore();
+export const db2 = getFirestore();
 // Firestore conection
 const saveUser = (displayName, email, password, date, uid) => {
   setDoc(doc(db2, 'users', uid), {
