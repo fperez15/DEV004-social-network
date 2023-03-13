@@ -30,19 +30,8 @@ jest.mock('@firebase/firestore', () => ({
 
 describe('fuencion createUser', () => {
   it('deberia crear un usuario', async () => {
-    const userCredential = await createUser(
-      'prueba@hotmail.com',
-      '123456',
-      'prueba',
-      '2000-10-15',
-    );    
-  expect(userCredential).resolves.toEqual(
-      { user: { uid: 'user-uid' } },
-      'prueba@hotmail.com',
-      '123456',
-      'prueba',
-      '2000-10-15',
-    );
+    const userCredential = await createUser();
+    expect(userCredential).toBe({ user: { uid: 'user-uid' } });
   });
 
   // it('deberia dar error al no llenar completos los campos', async () =>
