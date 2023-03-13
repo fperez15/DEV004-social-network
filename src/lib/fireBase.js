@@ -43,7 +43,7 @@ const saveUser = (displayName, email, password, date, uid) => {
 };
 // User authentication
 export const createUser = (email, password, displayName, date) => {
-  createUserWithEmailAndPassword(auth, email, password)
+  return createUserWithEmailAndPassword(auth, email, password)
     .then((usercredentials) => {
       const user = usercredentials.user;
       saveUser(displayName, email, password, date, user.uid);
