@@ -47,6 +47,7 @@ export const createUser = (email, password, displayName, date) => {
     .then((usercredentials) => {
       const user = usercredentials.user;
       saveUser(displayName, email, password, date, user.uid);
+      return user;
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -56,6 +57,7 @@ export const createUser = (email, password, displayName, date) => {
         alert('Fields cannot be empty.');
       }
       console.log(errorCode);
+      return error;
     });
 };
 

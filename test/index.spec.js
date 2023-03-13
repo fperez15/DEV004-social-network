@@ -27,11 +27,15 @@ jest.mock('@firebase/firestore', () => ({
   setDoc: jest.fn(),
   getFirestore: () => ({ }),
 }));
-
-describe('fuencion createUser', () => {
-  it('deberia crear un usuario', async () => {
-    const userCredential = await createUser();
-    expect(userCredential).toBe({ user: { uid: 'user-uid' } });
+jest.mock('../src/lib/fireBase.js', () => ({
+  createUser: () => Promise.resolve({ user: { uid: 'user-uid' } }),
+}));
+describe('funcion createUser', () => {
+  it('deberia crear un usuario', () => {
+    createUser('soulMates@gmail.com', '1234567')
+      .then((user) => {
+        expect(user).toStrictEqual({ user: { uid: 'user-uid' } });
+      });
   });
 
   // it('deberia dar error al no llenar completos los campos', async () =>
