@@ -71,7 +71,7 @@ export const home = () => {
   btnHomeRegister.addEventListener('click', () => onNavigate('/register'));
 
   // Login with email
-  formLogin.addEventListener('submit', async (e) => {
+  formLogin.addEventListener('submit', (e) => {
     e.preventDefault();
     logIn(inpEmail.value, inpPassword.value)
       .then((credentials) => {

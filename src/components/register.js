@@ -10,7 +10,7 @@ export const register = () => {
   logo.src = './img/logo.png';
 
   const formRegister = document.createElement('form');
-  formRegister.id = 'formRegister'
+  formRegister.id = 'formRegister';
   formRegister.className = 'formRegister';
 
   const inpName = document.createElement('input');
@@ -48,16 +48,12 @@ export const register = () => {
   registerSection.appendChild(logo);
   registerSection.appendChild(formRegister);
 
-  formRegister.addEventListener('submit', async (e) => {
-    console.log("se envio formulario")
+  formRegister.addEventListener('submit', (e) => {
     e.preventDefault();
     try {
-      createUser(inpEmail.value, inpPassword.value, inpName.value, inpDate.value) //promise
-      .then(() => { //despues o entonces
-        onNavigate('/feed');
-      });      
-      return true;
-    } catch (error) { return error; }
+      createUser(inpEmail.value, inpPassword.value, inpName.value, inpDate.value);
+      onNavigate('/feed');
+    } catch (error) { console.log(error); }
   });
   return registerSection;
 };

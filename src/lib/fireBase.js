@@ -26,7 +26,6 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-console.log(auth);
 export const provider = new GoogleAuthProvider();
 export const db = getFirestore(app);
 
@@ -43,7 +42,7 @@ const saveUser = (displayName, email, password, date, uid) => {
 };
 // User authentication
 export const createUser = (email, password, displayName, date) => {
-  return createUserWithEmailAndPassword(auth, email, password)
+  createUserWithEmailAndPassword(auth, email, password)
     .then((usercredentials) => {
       const user = usercredentials.user;
       saveUser(displayName, email, password, date, user.uid);
