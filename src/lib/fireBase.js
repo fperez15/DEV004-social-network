@@ -3,7 +3,7 @@ import {
   getFirestore,
   setDoc,
   doc,
-  // createUserWithEmailAndPassword,
+
 } from 'firebase/firestore';
 import {
   createUserWithEmailAndPassword,
@@ -24,12 +24,12 @@ const firebaseConfig = {
   measurementId: 'G-XJVC9T7JX1',
 };
 
-export const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const provider = new GoogleAuthProvider();
-export const db = getFirestore(app);
+  export const app = initializeApp(firebaseConfig);
+  export const auth = getAuth(app);
+  export const provider = new GoogleAuthProvider();
+  export const db = getFirestore(app);
+  export const db2 = getFirestore();
 
-export const db2 = getFirestore();
 // Firestore conection
 const saveUser = (displayName, email, password, date, uid) => {
   setDoc(doc(db2, 'users', uid), {
@@ -52,8 +52,11 @@ export const createUser = (email, password, displayName, date) => {
       const errorCode = error.code;
       if (errorCode === 'auth/weak-password') {
         alert('The password must be at least 6 characters.');
-      } else if (errorCode === 'auth/network-request-failed') {
+      } else if (errorCode === 'auth/network-request-failed.') {
         alert('Fields cannot be empty.');
+      }
+      if (errorCode === 'auth/invalid-email'){
+        alert('Email is wrong.');
       }
       console.log(errorCode);
       return error;

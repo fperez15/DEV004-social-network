@@ -50,10 +50,10 @@ export const register = () => {
 
   formRegister.addEventListener('submit', (e) => {
     e.preventDefault();
-    try {
-      createUser(inpEmail.value, inpPassword.value, inpName.value, inpDate.value);
+      createUser(inpEmail.value, inpPassword.value, inpName.value, inpDate.value) // promise
+      .then(() => { //despues o entonces
       onNavigate('/feed');
-    } catch (error) { console.log(error); }
+      })
   });
   return registerSection;
 };
