@@ -10,6 +10,10 @@ export const home = () => {
   logo.id = 'logo';
   logo.src = './img/logo.png';
 
+  const errorHome = document.createElement('h5');
+  errorHome.className = 'errorHome';
+  errorHome.style.display = 'none';
+
   const formLogin = document.createElement('form');
   formLogin.className = 'formLogin';
   formLogin.id = 'formLogin';
@@ -62,6 +66,7 @@ export const home = () => {
   btnHomeRegister.id = 'btnHomeRegister';
 
   homeSection.appendChild(logo);
+  homeSection.appendChild(errorHome);
   homeSection.appendChild(formLogin);
   homeSection.appendChild(division);
   homeSection.appendChild(btnGoogle);
@@ -78,18 +83,34 @@ export const home = () => {
         const user = credentials.user.uid;
         localStorage.setItem('idUser', user);
         onNavigate('/feed');
-        console.log('userlogIn', user);
       })
       .catch((error) => {
-        // Poner alertas de errores PENDIENTE
-        console.log(error);
+        const errorCode = error.code;
+        if (errorCode === 'auth/invalid-email') {
+          errorHome.style.display = 'block';
+          errorHome.textContent = 'Fields cannot be empty.';
+        }
+        if (errorCode === 'auth/user-not-found') {
+          errorHome.style.display = 'block';
+          errorHome.textContent = 'Email is not registered.';
+        }
+        if (errorCode === 'auth/wrong-password') {
+          errorHome.style.display = 'block';
+          errorHome.textContent = 'Password is wrong.';
+        }
       });
   });
 
   // Login with Google
   btnGoogle.addEventListener('click', () => {
-    logInGoogle();
-    onNavigate('/feed');
+    logInGoogle()
+      .then(() => {
+        onNavigate('/feed');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        return errorCode;
+      });
   });
 
   return homeSection;

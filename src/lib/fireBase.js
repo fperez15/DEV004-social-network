@@ -12,6 +12,7 @@ import {
   signInWithPopup,
   getAuth,
   onAuthStateChanged,
+  signOut,
 } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -24,11 +25,11 @@ const firebaseConfig = {
   measurementId: 'G-XJVC9T7JX1',
 };
 
-  export const app = initializeApp(firebaseConfig);
-  export const auth = getAuth(app);
-  export const provider = new GoogleAuthProvider();
-  export const db = getFirestore(app);
-  export const db2 = getFirestore();
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const provider = new GoogleAuthProvider();
+export const db = getFirestore(app);
+export const db2 = getFirestore();
 
 // Firestore conection
 const saveUser = (displayName, email, password, date, uid) => {
@@ -41,25 +42,13 @@ const saveUser = (displayName, email, password, date, uid) => {
   });
 };
 // User authentication
+// eslint-disable-next-line
 export const createUser = (email, password, displayName, date) => {
-  createUserWithEmailAndPassword(auth, email, password)
+  return createUserWithEmailAndPassword(auth, email, password)
     .then((usercredentials) => {
       const user = usercredentials.user;
       saveUser(displayName, email, password, date, user.uid);
       return user;
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      if (errorCode === 'auth/weak-password') {
-        alert('The password must be at least 6 characters.');
-      } else if (errorCode === 'auth/network-request-failed.') {
-        alert('Fields cannot be empty.');
-      }
-      if (errorCode === 'auth/invalid-email'){
-        alert('Email is wrong.');
-      }
-      console.log(errorCode);
-      return error;
     });
 };
 
@@ -67,30 +56,19 @@ export const createUser = (email, password, displayName, date) => {
 export const logIn = (email, password) => signInWithEmailAndPassword(auth, email, password);
 
 // login with google
+// eslint-disable-next-line
 export const logInGoogle = () => {
-  signInWithPopup(auth, provider)
+  return signInWithPopup(auth, provider)
     .then((result) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
       return { user, token };
-    })
-    .catch((error) => {
-      console.log(error);
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-      return {
-        errorCode, errorMessage, email, credential,
-      };
     });
 };
 
 export function authStateChangedEvent(cb) {
   onAuthStateChanged(auth, (user) => cb(user));
 }
+
+export const signOutUser = () => signOut(auth);

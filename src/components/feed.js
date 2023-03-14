@@ -1,7 +1,7 @@
-import { signOut } from 'firebase/auth';
+// import { signOut } from 'firebase/auth';
 import { getDoc, doc } from 'firebase/firestore';
 import { onNavigate } from '../router';
-import { db, auth } from '../lib/fireBase.js';
+import { db, auth, signOutUser } from '../lib/fireBase.js';
 
 export const feed = () => {
   const feedSection = document.createElement('section');
@@ -92,13 +92,14 @@ export const feed = () => {
     });
   }
 
-  btnLogout.addEventListener('click', async () => {
-    signOut(auth)
+  btnLogout.addEventListener('click', () => {
+    signOutUser()
       .then(() => {
         onNavigate('/');
       })
       .catch((error) => {
-        console.log(error);
+        const errorCode = error.code;
+        return errorCode;
       });
   });
   txtPost.addEventListener('click', () => onNavigate('/post'));
