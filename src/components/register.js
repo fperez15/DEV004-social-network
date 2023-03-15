@@ -11,6 +11,7 @@ export const register = () => {
 
   const errorRegister = document.createElement('h5');
   errorRegister.className = 'errorRegister';
+  errorRegister.id = 'errorRegister';
   errorRegister.style.display = 'none';
 
   const formRegister = document.createElement('form');
@@ -70,15 +71,15 @@ export const register = () => {
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'Fields cannot be empty.';
         }
-        if (errorCode === 'auth/invalid-email') {
+        else if (errorCode === 'auth/invalid-email') {
           errorRegister.style.display = 'block';
-          errorRegister.textContent = 'Fields cannot be empty.';
+          errorRegister.textContent = 'Invalid email.';
         }
-        if (errorCode === 'auth/missing-email') {
+        else if (errorCode === 'auth/missing-email') {
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'Email field cannot be empty.';
         }
-        if (errorCode === 'auth/email-already-in-use') {
+        else if (errorCode === 'auth/email-already-in-use') {
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'Email already in use.';
         }

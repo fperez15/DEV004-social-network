@@ -79,16 +79,7 @@ export const feed = () => {
         const nameF = docSnap.data().displayName;
         userName.textContent = nameF;
         //  console.log('Document data:', docSnap.data().displayName);
-      } else {
-        //  doc.data() will be undefined in this case
-        //  console.log('No such document!');
       }
-
-      //  console.log('Sign-in provider: ' + profile.providerId);
-      //  console.log('  Provider-specific UID: ' + profile.uid);
-      //  console.log('  Name: ' + profile.displayName);
-      //  console.log('  Email: ' + profile.email);
-      //  console.log('  Photo URL: ' + profile.photoURL);
     });
   }
 

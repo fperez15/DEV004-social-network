@@ -105,7 +105,7 @@
   position: absolute;
   top: 10px;
   bottom: 0;
-  height: 12%;
+  height: 9%;
   left: 0;
   width: 60px;
   overflow: hidden;
@@ -187,23 +187,23 @@ li:hover {
   color: #001858;
 }
 .imgPost {
-  width: 20%;
+  height: 90%;
   background-color: #f3d2c1;
 }
-/* estilo de post */
+/* --------- post.js STYLE --------- */
 
 .postSection {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  justify-items: center;
 }
 .logoPost {
   max-width: 20%;
-  align-self: center;
 }
 .articlePost{
   display: grid;
   grid-template-rows: repeat(5, 1fr);
   grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr) ;
   width: 70%;
  height: 250px;
   background-color: #f3d2c1;
@@ -214,24 +214,37 @@ li:hover {
   width: 70%;
   height: 40%;
   align-self: center;
+  display: flex;
   background-color: transparent;
   grid-column-start: 1;
   grid-column-end: 4;
+  grid-column-end: 5;
   grid-row-start: 2;
   grid-row-end: 5;
+  margin: 10px 10px 10px 30px;
+  border: 0;
+  color: #001858;
 
 }
+
+.inpPost::placeholder {
+  color: #001858;
+
+}  
+
 .btnCancelPost{
   background-color: #f582ae;
   color: #001858;
   font-weight: bold;
   border-radius: 5px;
-  padding: 5px;
+  padding: 10px;
   border: none;
-  grid-column-start: 2;
-  grid-column-end: 3;
+  grid-column-start: 3;
+  grid-column-end: 4;
   grid-row-start: 5;
   grid-row-end: 6;
+  display: flex;
+  margin: 6px 5px 6px 5px;
 
 }
 .btnCreatePost{
@@ -239,12 +252,15 @@ li:hover {
   color: #001858;
   font-weight: bold;
   border-radius: 5px;
-  padding: 5px;
+  padding: 10px;
   border: none;
-  grid-column-start: 3;
-  grid-column-end: 4;
+  grid-column-start: 4;
+  grid-column-end: 5;
   grid-row-start: 5;
   grid-row-end: 6;
+  display: flex;
+  margin: 6px 5px 6px 5px;
+  justify-content: center;
 }
 .userImg {
   text-align: center;
@@ -253,11 +269,11 @@ li:hover {
   width: 45px;
   height: 45px;
   border-radius: 50%;
+  justify-self: end;
+  margin-right: 10px;
+  margin-top: 10px;
 }
 .nameUser {
   color: #001858;
   background-color: transparent; 
-}
-h6{
-  color: #001858;
 }

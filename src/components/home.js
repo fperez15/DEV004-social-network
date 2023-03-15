@@ -12,6 +12,7 @@ export const home = () => {
 
   const errorHome = document.createElement('h5');
   errorHome.className = 'errorHome';
+  errorHome.id = 'errorHome';
   errorHome.style.display = 'none';
 
   const formLogin = document.createElement('form');
@@ -109,7 +110,10 @@ export const home = () => {
       })
       .catch((error) => {
         const errorCode = error.code;
-        return errorCode;
+        if (errorCode === 'auth/popup-closed-by-user') {
+          errorHome.style.display = 'block';
+          errorHome.textContent = 'Something went wrong.';
+        }
       });
   });
 
