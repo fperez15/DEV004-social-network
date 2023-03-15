@@ -1,7 +1,7 @@
 // import { signOut } from 'firebase/auth';
 import { getDoc, doc } from 'firebase/firestore';
 import { onNavigate } from '../router';
-import { db, auth, signOutUser } from '../lib/fireBase.js';
+import { db, auth, signOutUser, showPost } from '../lib/fireBase.js';
 
 export const feed = () => {
   const feedSection = document.createElement('section');
@@ -61,6 +61,22 @@ export const feed = () => {
   feedSection.appendChild(logo);
   feedSection.appendChild(divPost);
 
+//   const articlePost = document.createElement('article');
+//   articlePost.className = 'articlePost';
+//   articlePost.id ='articlePost';
+// const imgUserPost = document.createElement('img')
+// imgUserPost.className = 'imgUserPost';
+// const nameUserPost = document.createElement('h5')
+// nameUserPost.className ='nameUserPost';
+// const textPost = document.createElement('p');
+// textPost.className = 'textPost';
+
+// 
+// articlePost.appendChild(imgUserPost);
+// articlePost.appendChild(nameUserPost);
+// articlePost.appendChild(textPost);
+// return articlePost
+
   const user = auth.currentUser;
   if (user !== null) {
     user.providerData.forEach(async (profile) => {
@@ -95,5 +111,7 @@ export const feed = () => {
   });
   txtPost.addEventListener('click', () => onNavigate('/post'));
   imgPost.addEventListener('click', () => onNavigate('/post'));
+
+  showPost()
   return feedSection;
 };

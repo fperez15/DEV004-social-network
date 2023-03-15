@@ -3,7 +3,10 @@ import {
   getFirestore,
   setDoc,
   doc,
-
+  addDoc,
+  collection,
+  getDocs,
+  
 } from 'firebase/firestore';
 import {
   createUserWithEmailAndPassword,
@@ -72,3 +75,22 @@ export function authStateChangedEvent(cb) {
 }
 
 export const signOutUser = () => signOut(auth);
+
+// crear post
+
+export const createPost = ( post ) => {
+  return addDoc(collection(db, 'post'), {
+    post,
+    displayName:auth.currentUser.displayName,
+    photo:auth.currentUser.photoURL,
+  });
+};
+
+export const showPost = () => {
+  const querySnapshot = getDocs(collection(db, 'post'));
+    for (let i = 0; i < querySnapshot.docs.length; i += 1) {
+    const document = querySnapshot.docs[i];
+    console.log(document)
+     }
+  
+}

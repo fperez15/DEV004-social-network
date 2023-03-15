@@ -1,6 +1,6 @@
 import { getDoc, doc } from 'firebase/firestore';
 import { onNavigate } from '../router';
-import { db, auth } from '../lib/fireBase.js';
+import { db, auth, createPost } from '../lib/fireBase.js';
 
 export const post = () => {
   const postSection = document.createElement('section');
@@ -56,20 +56,21 @@ export const post = () => {
       if (docSnap.exists()) {
         const nameF = docSnap.data().displayName;
         nameUser.textContent = nameF;
-
-        //  console.log('Document data:', docSnap.data().displayName);
-      } else {
-        //  doc.data() will be undefined in this case
-        //  console.log('No such document!');
-      }
-
-      //  console.log('Sign-in provider: ' + profile.providerId);
-      //  console.log('  Provider-specific UID: ' + profile.uid);
-      //  console.log('  Name: ' + profile.displayName);
-      //  console.log('  Email: ' + profile.email);
-      //  console.log('  Photo URL: ' + profile.photoURL);
+      } 
     });
   }
+  btnCreatePost.addEventListener('click', (e) => {
+    e.preventDefault();
+    createPost(textArea.value )
+    .then(() => {
+      onNavigate('/feed');
+    })
+    .catch((error) => {
+      const errorCode= error.code;
+      console.log(errorCode);
+    })
+    
 
+  })
   return postSection;
 };
