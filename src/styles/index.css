@@ -84,11 +84,7 @@
 #feedNav {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  
-  
 }
-
-
 
 .imgUser {
   max-width: 40%;
@@ -122,7 +118,6 @@
 .ulMenu {
   margin: 5px 0 0 5px;
   padding: 0;
-
   /* box-sizing: border-box; */
 }
 
@@ -190,7 +185,8 @@ li:hover {
   height: 90%;
   background-color: #f3d2c1;
 }
-/* --------- post.js STYLE --------- */
+
+/* --------------- post.js STYLE --------------- */
 
 .postSection {
   display: grid;
@@ -277,3 +273,5 @@ li:hover {
   color: #001858;
   background-color: transparent; 
 }
+
+/* --------------- feed.js 'ALL POSTS' STYLE --------------- */

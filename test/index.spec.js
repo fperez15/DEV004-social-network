@@ -67,7 +67,7 @@ describe('función LogIn', () => {
 });
 
 describe('función LogIn with Google', () => {
-  it('debería inicar sesión con Google', () => {
+  it('debería iniciar sesión con Google', () => {
     // eslint-disable-next-line
     fireBase.logInGoogle = jest.fn().mockResolvedValue({ user: { uid: 'user-uid' } });
     document.body.innerHTML = "<section id='root'></section>";
@@ -107,7 +107,6 @@ describe('función createUser.catch', () => {
     document.body.innerHTML = "<section id='root'></section>";
 
     const sectionRegister = register();
-    
     sectionRegister.querySelector('#name').value = 'pepita';
     sectionRegister.querySelector('#email').value = 'pepita@test.com';
     sectionRegister.querySelector('#inpDate').value = '13/03/2023';
@@ -127,7 +126,6 @@ describe('función createUser.catch', () => {
     document.body.innerHTML = "<section id='root'></section>";
 
     const sectionRegister = register();
-    
     sectionRegister.querySelector('#name').value = '';
     sectionRegister.querySelector('#email').value = 'pepita@test.com';
     sectionRegister.querySelector('#inpDate').value = '13/03/2023';
@@ -147,7 +145,6 @@ describe('función createUser.catch', () => {
     document.body.innerHTML = "<section id='root'></section>";
 
     const sectionRegister = register();
-    
     sectionRegister.querySelector('#name').value = 'pepita';
     sectionRegister.querySelector('#email').value = 'pepitatest.com';
     sectionRegister.querySelector('#inpDate').value = '13/03/2023';
@@ -166,7 +163,6 @@ describe('función createUser.catch', () => {
     document.body.innerHTML = "<section id='root'></section>";
 
     const sectionRegister = register();
-    
     sectionRegister.querySelector('#name').value = 'pepita';
     sectionRegister.querySelector('#email').value = '';
     sectionRegister.querySelector('#inpDate').value = '13/03/2023';
@@ -186,7 +182,6 @@ describe('función createUser.catch', () => {
     document.body.innerHTML = "<section id='root'></section>";
 
     const sectionRegister = register();
-    
     sectionRegister.querySelector('#name').value = 'pepita';
     sectionRegister.querySelector('#email').value = 'pepita@test.com';
     sectionRegister.querySelector('#inpDate').value = '13/03/2023';
@@ -206,7 +201,6 @@ describe('función createUser.catch', () => {
     document.body.innerHTML = "<section id='root'></section>";
 
     const sectionRegister = register();
-    
     sectionRegister.querySelector('#name').value = 'pepita';
     sectionRegister.querySelector('#email').value = 'pepita@test.com';
     sectionRegister.querySelector('#inpDate').value = '13/03/2023';
@@ -219,7 +213,6 @@ describe('función createUser.catch', () => {
       }
     });
   });
-
 });
 
 // ---------- Testing CATCH home.js ---------- //
@@ -234,7 +227,6 @@ describe('función LogIn.catch', () => {
     const sectionHome = home();
     sectionHome.querySelector('#email').value = '';
     sectionHome.querySelector('#password').value = '123456';
-
     sectionHome.querySelector('#formLogin').dispatchEvent(new Event('submit'));
 
     return Promise.reject().catch(() => {
@@ -254,7 +246,6 @@ describe('función LogIn.catch', () => {
     const sectionHome = home();
     sectionHome.querySelector('#email').value = 'pepita@test.com';
     sectionHome.querySelector('#password').value = '123456';
-
     sectionHome.querySelector('#formLogin').dispatchEvent(new Event('submit'));
 
     return Promise.reject().catch(() => {
@@ -274,7 +265,6 @@ describe('función LogIn.catch', () => {
     const sectionHome = home();
     sectionHome.querySelector('#email').value = 'pepita@test.com';
     sectionHome.querySelector('#password').value = '123456';
-
     sectionHome.querySelector('#formLogin').dispatchEvent(new Event('submit'));
 
     return Promise.reject().catch(() => {
@@ -285,9 +275,8 @@ describe('función LogIn.catch', () => {
   });
 });
 
-// ---------- Testing CATCH home.js ---------- //
-describe('función LogIn with Google', () => {
-  it('debería inicar sesión con Google', () => {
+describe('función LogIn with Google.catch', () => {
+  it('no debería iniciar sesión con Google', () => {
     // eslint-disable-next-line
     fireBase.logInGoogle = jest.fn().mockRejectedValueOnce({ code: 'auth/popup-closed-by-user' });
     document.body.innerHTML = "<section id='root'></section>";

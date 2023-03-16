@@ -1,7 +1,12 @@
 // import { signOut } from 'firebase/auth';
-import { getDoc, doc } from 'firebase/firestore';
+import { getDoc, doc, onSnapshot } from 'firebase/firestore';
 import { onNavigate } from '../router';
-import { db, auth, signOutUser } from '../lib/fireBase.js';
+import {
+  db,
+  auth,
+  signOutUser,
+  queryInstruction,
+} from '../lib/fireBase.js';
 
 export const feed = () => {
   const feedSection = document.createElement('section');
@@ -61,22 +66,6 @@ export const feed = () => {
   feedSection.appendChild(logo);
   feedSection.appendChild(divPost);
 
-//   const articlePost = document.createElement('article');
-//   articlePost.className = 'articlePost';
-//   articlePost.id ='articlePost';
-// const imgUserPost = document.createElement('img')
-// imgUserPost.className = 'imgUserPost';
-// const nameUserPost = document.createElement('h5')
-// nameUserPost.className ='nameUserPost';
-// const textPost = document.createElement('p');
-// textPost.className = 'textPost';
-
-// 
-// articlePost.appendChild(imgUserPost);
-// articlePost.appendChild(nameUserPost);
-// articlePost.appendChild(textPost);
-// return articlePost
-
   const user = auth.currentUser;
   if (user !== null) {
     user.providerData.forEach(async (profile) => {
@@ -112,6 +101,49 @@ export const feed = () => {
   txtPost.addEventListener('click', () => onNavigate('/post'));
   imgPost.addEventListener('click', () => onNavigate('/post'));
 
- 
+  onSnapshot(queryInstruction(), (array) => {
+    array.forEach((posts) => {
+      const containerPosts = document.createElement('section');
+      containerPosts.className = 'containerPosts';
+
+      const articlePost = document.createElement('article');
+      articlePost.className = 'articlePost';
+      articlePost.id = 'articlePost';
+      const imgUserPost = document.createElement('img');
+      imgUserPost.className = 'imgUserPost';
+      const nameUserPost = document.createElement('h5');
+      nameUserPost.className = 'nameUserPost';
+      const btnDelete = document.createElement('img');
+      btnDelete.className = 'btnDelete';
+      const btnEdit = document.createElement('img');
+      btnEdit.className = 'btnEdit';
+      const textPost = document.createElement('p');
+      textPost.className = 'textPost';
+      const bottomDiv = document.createElement('div');
+      bottomDiv.className = 'bottomDiv';
+      const likesNum = document.createElement('p');
+      likesNum.className = 'likesNum';
+      const btnlike = document.createElement('img');
+      btnlike.className = 'btnlike';
+
+      bottomDiv.appendChild(likesNum);
+      bottomDiv.appendChild(btnlike);
+
+      articlePost.appendChild(imgUserPost);
+      articlePost.appendChild(nameUserPost);
+      articlePost.appendChild(btnDelete);
+      articlePost.appendChild(btnEdit);
+      articlePost.appendChild(textPost);
+      articlePost.appendChild(bottomDiv);
+
+      containerPosts.append(articlePost);
+      feedSection.appendChild(containerPosts);
+
+      imgUserPost.src = posts.data().photo;
+      nameUserPost.textContent = posts.data().ownerPost;
+      textPost.textContent = posts.data().post;
+    });
+  });
+
   return feedSection;
 };

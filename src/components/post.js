@@ -56,21 +56,19 @@ export const post = () => {
       if (docSnap.exists()) {
         const nameF = docSnap.data().displayName;
         nameUser.textContent = nameF;
-      } 
+      }
     });
   }
   btnCreatePost.addEventListener('click', (e) => {
     e.preventDefault();
-    createPost(textArea.value )
-    .then(() => {
-      onNavigate('/feed');
-    })
-    .catch((error) => {
-      const errorCode= error.code;
-      console.log(errorCode);
-    })
-    
-
-  })
+    createPost(textArea.value)
+      .then(() => {
+        onNavigate('/feed');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        console.log(errorCode);
+      });
+  });
   return postSection;
 };

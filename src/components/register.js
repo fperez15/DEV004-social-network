@@ -70,20 +70,16 @@ export const register = () => {
         } else if (errorCode === 'auth/network-request-failed.') {
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'Fields cannot be empty.';
-        }
-        else if (errorCode === 'auth/invalid-email') {
+        } else if (errorCode === 'auth/invalid-email') {
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'Invalid email.';
-        }
-        else if (errorCode === 'auth/missing-email') {
+        } else if (errorCode === 'auth/missing-email') {
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'Email field cannot be empty.';
-        }
-        else if (errorCode === 'auth/email-already-in-use') {
+        } else if (errorCode === 'auth/email-already-in-use') {
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'Email already in use.';
-        }
-        if (errorCode === 'auth/internal-error') {
+        } if (errorCode === 'auth/internal-error') {
           errorRegister.style.display = 'block';
           errorRegister.textContent = 'Password field cannot be empty.';
         }
