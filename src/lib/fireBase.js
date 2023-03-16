@@ -6,6 +6,12 @@ import {
   addDoc,
   collection,
   getDocs,
+  serverTimestamp,
+  onSnapshot,
+  getDoc,
+  query,
+  orderBy,
+
   
 } from 'firebase/firestore';
 import {
@@ -77,20 +83,31 @@ export function authStateChangedEvent(cb) {
 export const signOutUser = () => signOut(auth);
 
 // crear post
-
+export const likes = [];
 export const createPost = ( post ) => {
   return addDoc(collection(db, 'post'), {
     post,
     displayName:auth.currentUser.displayName,
     photo:auth.currentUser.photoURL,
+    likes,
+    createDate : serverTimestamp(),
   });
 };
+const queryInstruction = query((collection(db, 'post')), orderBy('createDate', 'desc'));
 
-export const showPost = () => {
-  const querySnapshot = getDocs(collection(db, 'post'));
-    for (let i = 0; i < querySnapshot.docs.length; i += 1) {
-    const document = querySnapshot.docs[i];
-    console.log(document)
-     }
-  
-}
+export const getPosts = () => {
+  getDocs(doc(db, 'post'));}
+
+  // Función para mostrar todos los posts
+export const onGetPosts = (callback) => {
+  onSnapshot(queryInstruction, callback);
+};
+// export const getPost = (id) => getDoc(doc(db, 'posts', id));
+
+// export const toLike = (id, idu) => updateDoc(doc(db, 'posts', id), {
+//   likes: arrayUnion(idu),
+// });
+
+// export const toDislike = (id, idu) => updateDoc(doc(db, 'posts', id), {
+//   likes: arrayRemove(idu),
+// }); 

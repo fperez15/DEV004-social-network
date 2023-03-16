@@ -1,7 +1,7 @@
 // import { signOut } from 'firebase/auth';
 import { getDoc, doc } from 'firebase/firestore';
 import { onNavigate } from '../router';
-import { db, auth, signOutUser, showPost } from '../lib/fireBase.js';
+import { db, auth, signOutUser } from '../lib/fireBase.js';
 
 export const feed = () => {
   const feedSection = document.createElement('section');
@@ -112,6 +112,6 @@ export const feed = () => {
   txtPost.addEventListener('click', () => onNavigate('/post'));
   imgPost.addEventListener('click', () => onNavigate('/post'));
 
-  showPost()
+ 
   return feedSection;
 };
