@@ -13,7 +13,7 @@ export const post = () => {
   articlePost.className = 'articlePost';
   const userImg = document.createElement('img');
   userImg.className = 'userImg';
-  const nameUser = document.createElement('h6');
+  const nameUser = document.createElement('h5');
   nameUser.className = 'nameUser';
   const textArea = document.createElement('textarea');
   textArea.name = 'textarea';

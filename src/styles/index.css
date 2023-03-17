@@ -2,6 +2,7 @@
 * {
   background-color: #fef6e4;
   font-family: "Questrial", sans-serif;
+  margin: 0;
 }
 #regSection,
 #homeSection {
@@ -99,10 +100,7 @@
 
 .feedNav {
   position: absolute;
-  top: 10px;
-  bottom: 0;
-  height: 9%;
-  left: 0;
+  height: 10%;
   width: 60px;
   overflow: hidden;
   transition: width 0.2s linear;
@@ -119,20 +117,23 @@
   margin: 5px 0 0 5px;
   padding: 0;
   /* box-sizing: border-box; */
-}
+  background-color: transparent;
+  }
 
 .imgUser {
   text-align: center;
   display: flex;
   transition: all 0.5s ease;
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+  margin-left: 5px;
 }
 .userName {
   color: #001858;
   position: relative;
   background-color: #f3d2c1;
+  top: 12px;
 }
 
 li {
@@ -141,6 +142,8 @@ li {
   width: 300px;
   display: flex;
   gap: 10px;
+  background-color: transparent;
+  
 }
 li:hover {
   background-color: #f3d2c1;
@@ -151,20 +154,30 @@ li:hover {
   color: #001858;
   font-weight: bold;
   border-radius: 5px;
-  padding: 5px;
-  align-self: center;
+  margin-left: 40px;
+  margin-top: 10px;
+  text-align: left;
+  padding: 3px;
+  line-height: 20px;
 }
 
 .btnLogout:hover {
   background-color: #d95e8d;
-  color: #fef6e4;
+  color: transparent;
+
 }
+.imgLogout{
+  width: 20px;
+  background-color: transparent;
+  float: right;
+ }
 
 .feedSection {
   /* display: grid;
   grid-template-columns: repeat(3, 1fr); */
   display: flex;
   flex-direction: column;
+  
 }
 .logoFeed {
   max-width: 20%;
@@ -174,16 +187,19 @@ li:hover {
   background-color: #f3d2c1;
   display: flex;
   height: 40px;
-  line-height: 0%;
-  gap: 10px;
+  gap: 5px;
 }
 .txtPost {
   background-color: #f3d2c1;
   color: #001858;
+  margin-top: 15px;
+
 }
 .imgPost {
   height: 90%;
   background-color: #f3d2c1;
+  margin-left: 5px;
+  margin-top: 3px;
 }
 
 /* --------------- post.js STYLE --------------- */
@@ -198,22 +214,17 @@ li:hover {
 .articlePost{
   display: grid;
   grid-template-rows: repeat(5, 1fr);
-  grid-template-columns: repeat(3, 1fr);
   grid-template-columns: repeat(4, 1fr) ;
-  width: 70%;
- height: 250px;
+  width: 75%;
+  height: 250px;
   background-color: #f3d2c1;
   border-radius: 8px;
-  align-self: center;
+  align-self: center;  
 }
 .inpPost{
-  width: 70%;
-  height: 40%;
-  align-self: center;
   display: flex;
   background-color: transparent;
   grid-column-start: 1;
-  grid-column-end: 4;
   grid-column-end: 5;
   grid-row-start: 2;
   grid-row-end: 5;
@@ -240,7 +251,7 @@ li:hover {
   grid-row-start: 5;
   grid-row-end: 6;
   display: flex;
-  margin: 6px 5px 6px 5px;
+  margin: 8px 6px;
 
 }
 .btnCreatePost{
@@ -255,23 +266,27 @@ li:hover {
   grid-row-start: 5;
   grid-row-end: 6;
   display: flex;
-  margin: 6px 5px 6px 5px;
+  margin: 8px 6px;
   justify-content: center;
 }
 .userImg {
-  text-align: center;
-  display: flex;
-  transition: all 0.5s ease;
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  justify-self: end;
-  margin-right: 10px;
+  margin-left: 10px;
   margin-top: 10px;
 }
 .nameUser {
   color: #001858;
+  margin-top: 25px;
+  margin-left: 10px;
   background-color: transparent; 
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 
 /* --------------- feed.js 'ALL POSTS' STYLE --------------- */
+
+

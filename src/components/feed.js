@@ -40,6 +40,10 @@ export const feed = () => {
   btnLogout.className = 'btnLogout';
   btnLogout.id = 'btnLogout';
   btnLogout.textContent = 'LOGOUT';
+  const imgLogout = document.createElement('img');
+  imgLogout.className = 'imgLogout';
+  imgLogout.src = './img/log-out.png';
+  btnLogout.appendChild(imgLogout);
   const liLogout = document.createElement('li');
   liLogout.className = 'liLogout';
   liImg.appendChild(imgUser);
