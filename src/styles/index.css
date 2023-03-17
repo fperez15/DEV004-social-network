@@ -288,5 +288,73 @@ li:hover {
 }
 
 /* --------------- feed.js 'ALL POSTS' STYLE --------------- */
+.articlePost{
+  display: grid;
+  background-color:#fef6e4;
+  width: 75%;
+  height: auto;
+  border-radius: 8px;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr) ;
+  margin-top: 15px;
+  margin-left: 30px;
+  padding-top: 15px;
+  box-shadow: 2px 5px 5px 0px rgba(0,24,88,0.75);
+}
 
-
+.imgUserPost{
+  display: flex;
+  border-radius: 50%;
+  width: 35px;
+  margin-left: 10px;
+  }
+.nameUserPost{
+  display: flex;
+  color: #001858;
+  background-color: transparent;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  margin-top: 10px;
+}
+.textPost{
+  display: flex;
+  color: #001858;
+  background-color: transparent;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 4;
+  margin: 10px 10px 10px 30px;
+  
+}
+.bottomDiv{
+  display: flex;
+  width: 100%;
+  background-color: #f3d2c1;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  border-radius: 0 0 8px 8px;
+}
+.btnEdit{
+  display: flex;
+  width: 20px;
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  justify-self: end;
+  margin-right: 5px;
+}
+.btnDelete{
+  display: flex;
+  width: 20px;
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  justify-self: start;
+}

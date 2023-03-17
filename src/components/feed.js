@@ -6,6 +6,7 @@ import {
   auth,
   signOutUser,
   queryInstruction,
+  deletePost,
 } from '../lib/fireBase.js';
 
 export const feed = () => {
@@ -106,7 +107,7 @@ export const feed = () => {
   imgPost.addEventListener('click', () => onNavigate('/post'));
 
   onSnapshot(queryInstruction(), (array) => {
-    array.forEach((posts) => {
+      array.forEach((posts) => {
       const containerPosts = document.createElement('section');
       containerPosts.className = 'containerPosts';
 
@@ -119,8 +120,12 @@ export const feed = () => {
       nameUserPost.className = 'nameUserPost';
       const btnDelete = document.createElement('img');
       btnDelete.className = 'btnDelete';
+      btnDelete.src = './img/delete-post.png';
+      btnDelete.style.display = 'none';
       const btnEdit = document.createElement('img');
       btnEdit.className = 'btnEdit';
+      btnEdit.src = './img/edit-post.png';
+      btnEdit.style.display = 'none';
       const textPost = document.createElement('p');
       textPost.className = 'textPost';
       const bottomDiv = document.createElement('div');
@@ -146,7 +151,16 @@ export const feed = () => {
       imgUserPost.src = posts.data().photo;
       nameUserPost.textContent = posts.data().ownerPost;
       textPost.textContent = posts.data().post;
-    });
+      const owner = posts.data().ownerPost;
+      const user2= auth.currentUser.displayName
+       if(owner === user2){
+      btnDelete.style.display = 'block';
+       btnEdit.style.display = 'block';
+       }
+        });
+      //  btnDelete.addEventListener('click', () =>{
+      //     deletePost()
+      //    })  
   });
 
   return feedSection;

@@ -10,8 +10,9 @@ import {
   onSnapshot,
   // getDoc,
   query,
-  // orderBy,
-} from 'firebase/firestore';
+  orderBy,
+  deleteDoc,
+  } from 'firebase/firestore';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -92,7 +93,7 @@ export const createPost = (post) => {
   });
 };
 
-export const queryInstruction = () => query((collection(db, 'post')));
+export const queryInstruction = () => query((collection(db, 'post')), orderBy('createDate', 'desc'));
 
 export const onGetPosts = () => {
   const post = [];
@@ -100,12 +101,12 @@ export const onGetPosts = () => {
     array.forEach((allPosts) => {
       post.push(allPosts.data());
     });
+
   });
   return post;
 };
 
-// export const getPosts = () => {
-//   getDocs(doc(db, 'post'));}
+export const deletePost = (id) => deleteDoc(doc(db, 'posts',id));
 
 // export const getPost = (id) => getDoc(doc(db, 'posts', id));
 
