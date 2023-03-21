@@ -314,13 +314,14 @@ li:hover {
 }
 .btnEdit{
   display: flex;
-  width: 20px;
+  width: 35px;
+  height: 20px;
   grid-column-start: 4;
   grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 2;
   justify-self: end;
-  margin-right: 5px;
+  border: none;
 }
 .btnDelete{
   display: flex;
@@ -336,4 +337,48 @@ li:hover {
 .imgDelete {
   width: 100%;
   float: center;
+}
+
+.imgEdit{
+  width: 100%;
+  float: center;
+}
+/* --------------- modal.js 'confirm delete post' STYLE --------------- */
+.modalForDelete{
+  display: flex;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 5;
+  grid-row-end: 6;
+  height: 10%;
+  border-radius: 8px;
+  padding-top: 15px;
+  box-shadow: 2px 5px 5px 0px rgba(0,24,88,0.75);
+  text-align: center;
+}
+.titleModal{
+  color:#001858;
+  align-self: center;
+}
+.btnAgree{
+  color: white;
+  font-weight: bold;
+  background-color: #F582AE;
+  border: none;
+  margin: 10px;
+}
+.btnAgree:hover{
+  color: white;
+  font-weight: bold;
+  background-color:#D95E8D;
+  border: none;
+}
+.btnCancel{
+  color:#001858;
+  font-weight: bold;
+  border: none;
+}
+.btnCancel:hover{
+  border: #001858 1px solid;
+
 }

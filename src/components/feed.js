@@ -111,15 +111,21 @@ export const feed = () => {
       btnDelete.type = 'submit';
       btnDelete.className = 'btnDelete';
       btnDelete.id = 'btnDelete';
+      btnDelete.style.display = 'none';
       const imgDelete = document.createElement('img');
       imgDelete.className = 'imgDelete';
       imgDelete.src = './img/delete-post.png';
-      // imgDelete.style.display = 'none';
       btnDelete.appendChild(imgDelete);
-      const btnEdit = document.createElement('img');
+
+      const btnEdit = document.createElement('button');
       btnEdit.className = 'btnEdit';
-      btnEdit.src = './img/edit-post.png';
+      btnEdit.id = 'btnEdit';
       btnEdit.style.display = 'none';
+      const imgEdit = document.createElement('img');
+      imgEdit.src = './img/edit-post.png';
+      imgEdit.className = 'imgEdit';
+      btnEdit.appendChild(imgEdit);
+
       const textPost = document.createElement('p');
       textPost.className = 'textPost';
       const bottomDiv = document.createElement('div');
@@ -149,9 +155,9 @@ export const feed = () => {
         btnDelete.style.display = 'block';
         btnEdit.style.display = 'block';
       }
-      const btnsDelete = containerPosts.querySelectorAll('.btnDelete');
+      const btnsDelete = containerPosts.querySelectorAll('#btnDelete');
       const modalForDelete = modalDelete();
-      feedSection.appendChild(modalForDelete);
+      articlePost.appendChild(modalForDelete);
       btnsDelete.forEach((btn) => {
         btn.addEventListener('click', () => {
           // Open the Modal Delete
@@ -162,11 +168,12 @@ export const feed = () => {
             deletePost(posts.id);
             // close the modalDelete
             modalForDelete.style.display = 'none';
-            window.location.reload();
+
             // add event listener to cancel
             containerPosts.append(modalForDelete);
+
           });
-          const btnCancel = modalForDelete.querySelector('btnCancel');
+          const btnCancel = modalForDelete.querySelector('#btnCancel');
           btnCancel.addEventListener('click', () => {
             modalForDelete.style.display = 'none';
           });
