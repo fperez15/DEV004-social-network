@@ -106,7 +106,7 @@ export const onGetPosts = () => {
   return post;
 };
 
-export const deletePost = (id) => deleteDoc(doc(db, 'posts',id));
+export const deletePost = (id) => deleteDoc(doc(db, 'post',id));
 
 // export const getPost = (id) => getDoc(doc(db, 'posts', id));
 

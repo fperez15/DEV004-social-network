@@ -8,34 +8,28 @@ import {
   queryInstruction,
   deletePost,
 } from '../lib/fireBase.js';
-
+import { modalDelete } from './modal.js';
 export const feed = () => {
   const feedSection = document.createElement('section');
   feedSection.className = 'feedSection';
   feedSection.id = 'feedSection';
-
   const logo = document.createElement('img');
   logo.className = 'logoFeed';
   logo.id = 'logoFeed';
   logo.src = './img/logo.png';
-
   const feedNav = document.createElement('nav');
   feedNav.id = 'feedNav';
   feedNav.className = 'feedNav';
-
   const ulMenu = document.createElement('ul');
   ulMenu.className = 'ulMenu';
-
   const imgUser = document.createElement('img');
   imgUser.className = 'imgUser';
   const liImg = document.createElement('li');
   liImg.className = 'liImg';
-
   const userName = document.createElement('h5');
   userName.className = 'userName';
   const liName = document.createElement('li');
   liName.className = 'liName';
-
   const btnLogout = document.createElement('button');
   btnLogout.type = 'submit';
   btnLogout.className = 'btnLogout';
@@ -50,11 +44,9 @@ export const feed = () => {
   liImg.appendChild(imgUser);
   liImg.appendChild(userName);
   liLogout.appendChild(btnLogout);
-
   ulMenu.appendChild(liImg);
   ulMenu.appendChild(liName);
   ulMenu.appendChild(liLogout);
-
   feedNav.appendChild(ulMenu);
   const divPost = document.createElement('div');
   divPost.className = 'divPost';
@@ -66,11 +58,9 @@ export const feed = () => {
   txtPost.textContent = 'NEW POST';
   divPost.appendChild(imgPost);
   divPost.appendChild(txtPost);
-
   feedSection.appendChild(feedNav);
   feedSection.appendChild(logo);
   feedSection.appendChild(divPost);
-
   const user = auth.currentUser;
   if (user !== null) {
     user.providerData.forEach(async (profile) => {
@@ -78,7 +68,6 @@ export const feed = () => {
       imgUser.src = photo;
       const name = profile.displayName;
       userName.textContent = name;
-
       if (photo === null) {
         imgUser.src = './img/user.png';
       }
@@ -92,7 +81,6 @@ export const feed = () => {
       }
     });
   }
-
   btnLogout.addEventListener('click', () => {
     signOutUser()
       .then(() => {
@@ -105,12 +93,12 @@ export const feed = () => {
   });
   txtPost.addEventListener('click', () => onNavigate('/post'));
   imgPost.addEventListener('click', () => onNavigate('/post'));
-
   onSnapshot(queryInstruction(), (array) => {
-      array.forEach((posts) => {
+    array.forEach((posts) => {
+      // const containerAllPublications = document.createElement('div');
       const containerPosts = document.createElement('section');
       containerPosts.className = 'containerPosts';
-
+      containerPosts.id = 'containerPosts';
       const articlePost = document.createElement('article');
       articlePost.className = 'articlePost';
       articlePost.id = 'articlePost';
@@ -118,10 +106,16 @@ export const feed = () => {
       imgUserPost.className = 'imgUserPost';
       const nameUserPost = document.createElement('h5');
       nameUserPost.className = 'nameUserPost';
-      const btnDelete = document.createElement('img');
+      // Btn Delete Post
+      const btnDelete = document.createElement('button');
+      btnDelete.type = 'submit';
       btnDelete.className = 'btnDelete';
-      btnDelete.src = './img/delete-post.png';
-      btnDelete.style.display = 'none';
+      btnDelete.id = 'btnDelete';
+      const imgDelete = document.createElement('img');
+      imgDelete.className = 'imgDelete';
+      imgDelete.src = './img/delete-post.png';
+      // imgDelete.style.display = 'none';
+      btnDelete.appendChild(imgDelete);
       const btnEdit = document.createElement('img');
       btnEdit.className = 'btnEdit';
       btnEdit.src = './img/edit-post.png';
@@ -134,34 +128,52 @@ export const feed = () => {
       likesNum.className = 'likesNum';
       const btnlike = document.createElement('img');
       btnlike.className = 'btnlike';
-
       bottomDiv.appendChild(likesNum);
       bottomDiv.appendChild(btnlike);
-
       articlePost.appendChild(imgUserPost);
       articlePost.appendChild(nameUserPost);
       articlePost.appendChild(btnDelete);
       articlePost.appendChild(btnEdit);
       articlePost.appendChild(textPost);
       articlePost.appendChild(bottomDiv);
-
       containerPosts.append(articlePost);
       feedSection.appendChild(containerPosts);
-
+      // containerAllPublications.appendChild(containerPosts);
+      // console.log('post', posts);
       imgUserPost.src = posts.data().photo;
       nameUserPost.textContent = posts.data().ownerPost;
       textPost.textContent = posts.data().post;
       const owner = posts.data().ownerPost;
-      const user2= auth.currentUser.displayName
-       if(owner === user2){
-      btnDelete.style.display = 'block';
-       btnEdit.style.display = 'block';
-       }
+      const user2 = auth.currentUser.displayName;
+      if (owner === user2) {
+        btnDelete.style.display = 'block';
+        btnEdit.style.display = 'block';
+      }
+      const btnsDelete = containerPosts.querySelectorAll('.btnDelete');
+      const modalForDelete = modalDelete();
+      feedSection.appendChild(modalForDelete);
+      btnsDelete.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          // Open the Modal Delete
+          modalForDelete.style.display = 'block';
+          const confirmBtnDelete = modalForDelete.querySelector('#btnAgree');
+          confirmBtnDelete.addEventListener('click', () => {
+            console.log('target', posts.id);
+            deletePost(posts.id);
+            // close the modalDelete
+            modalForDelete.style.display = 'none';
+            window.location.reload();
+            // add event listener to cancel
+            containerPosts.append(modalForDelete);
+          });
+          const btnCancel = modalForDelete.querySelector('btnCancel');
+          btnCancel.addEventListener('click', () => {
+            modalForDelete.style.display = 'none';
+          });
+          console.log('click btn delete');
         });
-      //  btnDelete.addEventListener('click', () =>{
-      //     deletePost()
-      //    })  
+      });
+    });
   });
-
   return feedSection;
 };

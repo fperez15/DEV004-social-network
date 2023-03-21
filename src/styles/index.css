@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
 * {
-  background-color: #fef6e4;
+  background-color: #FEF6E4;
   font-family: "Questrial", sans-serif;
   margin: 0;
 }
@@ -22,7 +22,7 @@
   align-items: center;
 }
 .form {
-  background-color: #f3d2c1;
+  background-color: #F3D2C1;
   padding: 5px 0 5px 0;
   border: 0;
   border-radius: 5px;
@@ -33,7 +33,7 @@
   color: #777777;
 }
 .btnHomeRegister {
-  background-color: #f582ae;
+  background-color: #F582AE;
   color: #001858;
   font-weight: 600;
   border: 0;
@@ -43,7 +43,7 @@
 }
 .btnRegister,
 .btnLogin {
-  background-color: #f582ae;
+  background-color: #F582AE;
   color: #001858;
   font-weight: 600;
   border: 0;
@@ -62,42 +62,36 @@
   height: 1px;
   background-color: #001858;
   width: 50px;
-
   margin-top: 20px;
 }
 .or {
   color: #001858;
 }
-
 .btnRegister:hover,
 .btnLogin:hover,
 .btnHomeRegister:hover {
-  background-color: #d95e8d;
-  color: #fef6e4;
+  background-color: #D95E8D;
+  color: #FEF6E4;
 }
 .btnGoogle {
   width: 150px;
   padding: 10px 15px 10px 15px;
 }
-
 /* Style Feed */
-/* 
+/*
 #feedNav {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
-
 .imgUser {
   max-width: 40%;
   justify-self: right;
   border-radius: 50%;
-  
 } */
-/* 
+/*
 .userMenu{
-  background-color: #f3d2c1;
+  background-color: #F3D2C1;
 } */
-
 .feedNav {
   position: absolute;
   height: 10%;
@@ -105,21 +99,18 @@
   overflow: hidden;
   transition: width 0.2s linear;
 }
-
 .feedNav:hover {
   width: 170px;
   height: 100px;
   transition: all 0.5s ease;
-  background-color: #f3d2c1;
+  background-color: #F3D2C1;
 }
-
 .ulMenu {
   margin: 5px 0 0 5px;
   padding: 0;
   /* box-sizing: border-box; */
   background-color: transparent;
   }
-
 .imgUser {
   text-align: center;
   display: flex;
@@ -132,10 +123,9 @@
 .userName {
   color: #001858;
   position: relative;
-  background-color: #f3d2c1;
+  background-color: #F3D2C1;
   top: 12px;
 }
-
 li {
   position: relative;
   /*display: table;*/
@@ -143,14 +133,12 @@ li {
   display: flex;
   gap: 10px;
   background-color: transparent;
-  
 }
 li:hover {
-  background-color: #f3d2c1;
+  background-color: #F3D2C1;
 }
-
 .btnLogout {
-  background-color: #f582ae;
+  background-color: #F582AE;
   color: #001858;
   font-weight: bold;
   border-radius: 5px;
@@ -160,50 +148,43 @@ li:hover {
   padding: 3px;
   line-height: 20px;
 }
-
 .btnLogout:hover {
-  background-color: #d95e8d;
+  background-color: #D95E8D;
   color: transparent;
-
 }
 .imgLogout{
   width: 20px;
   background-color: transparent;
   float: right;
  }
-
 .feedSection {
   /* display: grid;
   grid-template-columns: repeat(3, 1fr); */
   display: flex;
   flex-direction: column;
-  
 }
 .logoFeed {
   max-width: 20%;
   align-self: center;
 }
 .divPost {
-  background-color: #f3d2c1;
+  background-color: #F3D2C1;
   display: flex;
   height: 40px;
   gap: 5px;
 }
 .txtPost {
-  background-color: #f3d2c1;
+  background-color: #F3D2C1;
   color: #001858;
   margin-top: 15px;
-
 }
 .imgPost {
   height: 90%;
-  background-color: #f3d2c1;
+  background-color: #F3D2C1;
   margin-left: 5px;
   margin-top: 3px;
 }
-
 /* --------------- post.js STYLE --------------- */
-
 .postSection {
   display: grid;
   justify-items: center;
@@ -217,9 +198,9 @@ li:hover {
   grid-template-columns: repeat(4, 1fr) ;
   width: 75%;
   height: 250px;
-  background-color: #f3d2c1;
+  background-color: #F3D2C1;
   border-radius: 8px;
-  align-self: center;  
+  align-self: center;
 }
 .inpPost{
   display: flex;
@@ -231,16 +212,12 @@ li:hover {
   margin: 10px 10px 10px 30px;
   border: 0;
   color: #001858;
-
 }
-
 .inpPost::placeholder {
   color: #001858;
-
-}  
-
+}
 .btnCancelPost{
-  background-color: #f582ae;
+  background-color: #F582AE;
   color: #001858;
   font-weight: bold;
   border-radius: 5px;
@@ -252,10 +229,9 @@ li:hover {
   grid-row-end: 6;
   display: flex;
   margin: 8px 6px;
-
 }
 .btnCreatePost{
-  background-color: #f582ae;
+  background-color: #F582AE;
   color: #001858;
   font-weight: bold;
   border-radius: 5px;
@@ -280,13 +256,12 @@ li:hover {
   color: #001858;
   margin-top: 25px;
   margin-left: 10px;
-  background-color: transparent; 
+  background-color: transparent;
   grid-column-start: 2;
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;
 }
-
 /* --------------- feed.js 'ALL POSTS' STYLE --------------- */
 .articlePost{
   display: grid;
@@ -301,7 +276,6 @@ li:hover {
   padding-top: 15px;
   box-shadow: 2px 5px 5px 0px rgba(0,24,88,0.75);
 }
-
 .imgUserPost{
   display: flex;
   border-radius: 50%;
@@ -327,12 +301,11 @@ li:hover {
   grid-row-start: 2;
   grid-row-end: 4;
   margin: 10px 10px 10px 30px;
-  
 }
 .bottomDiv{
   display: flex;
   width: 100%;
-  background-color: #f3d2c1;
+  background-color: #F3D2C1;
   grid-column-start: 1;
   grid-column-end: 5;
   grid-row-start: 4;
@@ -351,10 +324,16 @@ li:hover {
 }
 .btnDelete{
   display: flex;
-  width: 20px;
+  width: 35px;
+  height: 20px;
   grid-column-start: 4;
   grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 2;
   justify-self: start;
+  border: none;
+}
+.imgDelete {
+  width: 100%;
+  float: center;
 }
