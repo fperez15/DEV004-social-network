@@ -22,6 +22,7 @@ import {
   onAuthStateChanged,
   signOut,
 } from 'firebase/auth';
+import { async } from 'regenerator-runtime';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAOUeeD-y4TUdhaBdt5fG6ZEmSTthslbGI',
@@ -106,7 +107,7 @@ export const onGetPosts = () => {
   return post;
 };
 
-export const deletePost = (id) => deleteDoc(doc(db, 'post',id));
+export const deletePost = async (id) => await deleteDoc(doc(db, 'post',id));
 
 // export const getPost = (id) => getDoc(doc(db, 'posts', id));
 

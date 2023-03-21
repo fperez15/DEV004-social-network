@@ -93,10 +93,14 @@ export const feed = () => {
   });
   txtPost.addEventListener('click', () => onNavigate('/post'));
   imgPost.addEventListener('click', () => onNavigate('/post'));
+  const containerPosts = document.createElement('section');
   onSnapshot(queryInstruction(), (array) => {
+    while(containerPosts.firstChild){
+      containerPosts.removeChild(containerPosts.firstChild)
+    }
     array.forEach((posts) => {
       // const containerAllPublications = document.createElement('div');
-      const containerPosts = document.createElement('section');
+      
       containerPosts.className = 'containerPosts';
       containerPosts.id = 'containerPosts';
       const articlePost = document.createElement('article');
@@ -111,10 +115,12 @@ export const feed = () => {
       btnDelete.type = 'submit';
       btnDelete.className = 'btnDelete';
       btnDelete.id = 'btnDelete';
+      btnDelete.value = posts.id;
       btnDelete.style.display = 'none';
       const imgDelete = document.createElement('img');
       imgDelete.className = 'imgDelete';
       imgDelete.src = './img/delete-post.png';
+      imgDelete.id = posts.id;
       btnDelete.appendChild(imgDelete);
 
       const btnEdit = document.createElement('button');
@@ -180,7 +186,10 @@ export const feed = () => {
           console.log('click btn delete');
         });
       });
-    });
-  });
+      
+    })
+    
+  })
+ 
   return feedSection;
 };
