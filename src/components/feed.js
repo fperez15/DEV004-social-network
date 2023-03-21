@@ -7,8 +7,10 @@ import {
   signOutUser,
   queryInstruction,
   deletePost,
+  getPost,
 } from '../lib/fireBase.js';
-import { modalDelete } from './modal.js';
+import { modalDelete, modalEditPost } from './modal.js';
+
 export const feed = () => {
   const feedSection = document.createElement('section');
   feedSection.className = 'feedSection';
@@ -186,10 +188,28 @@ export const feed = () => {
           console.log('click btn delete');
         });
       });
+     const btnsEdit = containerPosts.querySelectorAll('#btnEdit');
+     btnsEdit.forEach((btn) =>{
+      if (owner === user2) {
+        const modalToEdit = modalEditPost();
+      modalToEdit.style.display = 'none';
+      containerPosts.appendChild(modalToEdit);
+      btn.addEventListener('click', async () => {
+        console.log('edite',posts.id);
+      articlePost.style.display = 'none';
+      modalToEdit.style.display = 'grid'
+      const doc = await getPost(posts.id);
+      const post = doc.data();
+      console.log('hola', doc, post);
+      modalToEdit.querySelector('.textAreaEdit').value = post.post ;
+      })
+      }
+      
+     })
       
     })
     
   })
- 
-  return feedSection;
+
+    return feedSection;
 };

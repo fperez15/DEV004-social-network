@@ -64,5 +64,7 @@ export const post = () => {
         console.log(errorCode);
       });
   });
+
+  
   return postSection;
 };

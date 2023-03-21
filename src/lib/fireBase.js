@@ -5,13 +5,13 @@ import {
   doc,
   addDoc,
   collection,
-  // getDocs,
   serverTimestamp,
   onSnapshot,
-  // getDoc,
   query,
   orderBy,
   deleteDoc,
+  updateDoc,
+  getDoc,
   } from 'firebase/firestore';
 import {
   createUserWithEmailAndPassword,
@@ -22,7 +22,6 @@ import {
   onAuthStateChanged,
   signOut,
 } from 'firebase/auth';
-import { async } from 'regenerator-runtime';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAOUeeD-y4TUdhaBdt5fG6ZEmSTthslbGI',
@@ -91,6 +90,7 @@ export const createPost = (post) => {
     photo: auth.currentUser.photoURL,
     createDate: serverTimestamp(),
     id: auth.currentUser.uid,
+    
   });
 };
 
@@ -108,9 +108,6 @@ export const onGetPosts = () => {
 };
 
 export const deletePost = async (id) => await deleteDoc(doc(db, 'post',id));
-
-// export const getPost = (id) => getDoc(doc(db, 'posts', id));
-
-// export const toLike = (id) => updateDoc(doc(db, 'posts', id), {
-//   likes: arrayUnion(idu),
-// });
+export const getPost = (id) => getDoc(doc(db, 'post', id));
+// Función para actualizar la informacion del post
+export const updatePost = (id, editedPost) => updateDoc(doc(db, 'post', id), editedPost);
