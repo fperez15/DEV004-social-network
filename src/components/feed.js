@@ -97,12 +97,12 @@ export const feed = () => {
   imgPost.addEventListener('click', () => onNavigate('/post'));
   const containerPosts = document.createElement('section');
   onSnapshot(queryInstruction(), (array) => {
-    while(containerPosts.firstChild){
+    while (containerPosts.firstChild) {
       containerPosts.removeChild(containerPosts.firstChild)
     }
     array.forEach((posts) => {
       // const containerAllPublications = document.createElement('div');
-      
+
       containerPosts.className = 'containerPosts';
       containerPosts.id = 'containerPosts';
       const articlePost = document.createElement('article');
@@ -188,28 +188,32 @@ export const feed = () => {
           console.log('click btn delete');
         });
       });
-     const btnsEdit = containerPosts.querySelectorAll('#btnEdit');
-     btnsEdit.forEach((btn) =>{
-      if (owner === user2) {
-        const modalToEdit = modalEditPost();
+
+      const btnsEdit = containerPosts.querySelectorAll('#btnEdit');
+
+      const modalToEdit = modalEditPost();
       modalToEdit.style.display = 'none';
       containerPosts.appendChild(modalToEdit);
-      btn.addEventListener('click', async () => {
-        console.log('edite',posts.id);
-      articlePost.style.display = 'none';
-      modalToEdit.style.display = 'grid'
-      const doc = await getPost(posts.id);
-      const post = doc.data();
-      console.log('hola', doc, post);
-      modalToEdit.querySelector('.textAreaEdit').value = post.post ;
-      })
+
+      const clickEdit = function clickBtn(){
+this.className = 'editBtnClick2';
       }
-      
-     })
-      
+
+      btnsEdit.forEach((btn) => {
+        console.log('click')
+        if (owner === user2) {
+          btn.addEventListener('click', clickEdit, async () => {
+          console.log('edite', posts.id);
+          articlePost.style.display = 'none';
+          modalToEdit.style.display = 'grid'
+          const doc =  await getPost(posts.id);
+          const post = doc.data();
+          modalToEdit.querySelector('.textAreaEdit').value = post.post;
+          })
+        }
+      })
     })
-    
   })
 
-    return feedSection;
+  return feedSection;
 };
