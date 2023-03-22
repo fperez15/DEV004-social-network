@@ -9,6 +9,8 @@ import {
   deletePost,
   getPost,
   updatePost,
+  toLike,
+  toDislike
 } from '../lib/fireBase.js';
 import { modalDelete, modalEditPost } from './modal.js';
 export const feed = () => {
@@ -95,13 +97,15 @@ export const feed = () => {
   });
   txtPost.addEventListener('click', () => onNavigate('/post'));
   imgPost.addEventListener('click', () => onNavigate('/post'));
- 
+
   const containerPosts = document.createElement('section');
   onSnapshot(queryInstruction(), (array) => {
     while (containerPosts.firstChild) {
       containerPosts.removeChild(containerPosts.firstChild);
     }
     array.forEach((posts) => {
+      const postLikes = posts.data().likes;
+
       // const containerAllPublications = document.createElement('div');
       containerPosts.className = 'containerPosts';
       containerPosts.id = 'containerPosts';
@@ -139,10 +143,22 @@ export const feed = () => {
       bottomDiv.className = 'bottomDiv';
       const likesNum = document.createElement('p');
       likesNum.className = 'likesNum';
-      const btnlike = document.createElement('img');
-      btnlike.className = 'btnlike';
+      const likeNum = postLikes.length;
+      likesNum.textContent = likeNum + 'like';
+      const btnLike = document.createElement('button');
+      btnLike.className = 'btnLike';
+      btnLike.setAttribute('btnLikes', posts.id);
+      const like = document.createElement('img');
+      like.className = 'like';
+      like.src = './img/heart.png';
+      const dislike = document.createElement('img');
+      dislike.className = 'dislike';
+      dislike.src = './img/full-heart.png';
+      dislike.style.display = 'none'
       bottomDiv.appendChild(likesNum);
-      bottomDiv.appendChild(btnlike);
+      btnLike.appendChild(like);
+      btnLike.appendChild(dislike);
+      bottomDiv.appendChild(btnLike);
       articlePost.appendChild(imgUserPost);
       articlePost.appendChild(nameUserPost);
       articlePost.appendChild(btnDelete);
@@ -162,11 +178,33 @@ export const feed = () => {
         btnDelete.style.display = 'block';
         btnEdit.style.display = 'block';
       }
+      if (postLikes.includes(auth.currentUser.uid)) {
+        like.style.display = 'none'
+        dislike.style.display = 'flex'
+      } else {
+        like.style.display = 'flex'
+        dislike.style.display = 'none'
+
+      }
       //btns likes
-      let counterLikes = '';
-      if (posts.likes.length > 0){
-      counterLikes =`${posts.likes.length}`}
-      
+      const btnsLikes = containerPosts.querySelectorAll('.btnLike');
+      btnsLikes.forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const getIdPost = btn.getAttribute('btnLikes');
+          if (getIdPost === posts.id) {
+            // like.style.display = 'none';
+            // dislike.style.display = 'flex';
+            const doc = await getPost(posts.id);
+            const post = doc.data();
+            if (post.likes.includes(user.uid)) {
+              toDislike(posts.id, user.uid)
+            } else {
+              toLike(posts.id, user.uid)
+            }
+          }
+        })
+      })
+
       //btn para eliminar publicacion
       const btnsDelete = containerPosts.querySelectorAll('#btnDelete');
       const modalForDelete = modalDelete();

@@ -95,6 +95,7 @@ export const createPost = (post) => {
     createDate: serverTimestamp(),
     id: auth.currentUser.uid,
     likes,
+    uid,
   });
 };
 
@@ -118,9 +119,10 @@ export const updatePost = (id, editedPost) => updateDoc(doc(db, 'post', id), edi
 
 //funcion dar like
 
-export const toLike = (id,udi) => updateDoc(doc(db, 'posts', id), {
+export const toLike = (id, uid) => updateDoc(doc(db, 'post', id), {
   likes: arrayUnion(uid),
 });
-export const toDislike = (id, udi) => updateDoc(doc(db, 'posts', id), {
+
+export const toDislike = (id, uid) => updateDoc(doc(db, 'post', id), {
   likes: arrayRemove(uid),
 });

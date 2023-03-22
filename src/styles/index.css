@@ -382,3 +382,13 @@ li:hover {
   border: #001858 1px solid;
 
 }
+/* --------------- modal.js 'confirm edit post' STYLE --------------- */
+
+
+/* --------------- modal.js 'like y dislike' STYLE --------------- */
+.like{
+  height: 20px;
+}
+.dislike{
+  height: 20px;
+}
