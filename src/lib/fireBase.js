@@ -12,6 +12,8 @@ import {
   deleteDoc,
   updateDoc,
   getDoc,
+  arrayUnion,
+  arrayRemove,
   } from 'firebase/firestore';
 import {
   createUserWithEmailAndPassword,
@@ -82,6 +84,8 @@ export function authStateChangedEvent(cb) {
 export const signOutUser = () => signOut(auth);
 
 // crear post
+// arreglo de id de usuario para likes
+export const likes = [];
 // eslint-disable-next-line
 export const createPost = (post) => { 
   return addDoc(collection(db, 'post'), {
@@ -90,7 +94,7 @@ export const createPost = (post) => {
     photo: auth.currentUser.photoURL,
     createDate: serverTimestamp(),
     id: auth.currentUser.uid,
-    
+    likes,
   });
 };
 
@@ -111,3 +115,12 @@ export const deletePost = async (id) => await deleteDoc(doc(db, 'post',id));
 export const getPost = (id) => getDoc(doc(db, 'post', id));
 // Función para actualizar la informacion del post
 export const updatePost = (id, editedPost) => updateDoc(doc(db, 'post', id), editedPost);
+
+//funcion dar like
+
+export const toLike = (id,udi) => updateDoc(doc(db, 'posts', id), {
+  likes: arrayUnion(uid),
+});
+export const toDislike = (id, udi) => updateDoc(doc(db, 'posts', id), {
+  likes: arrayRemove(uid),
+});

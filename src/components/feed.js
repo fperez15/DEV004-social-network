@@ -95,6 +95,7 @@ export const feed = () => {
   });
   txtPost.addEventListener('click', () => onNavigate('/post'));
   imgPost.addEventListener('click', () => onNavigate('/post'));
+ 
   const containerPosts = document.createElement('section');
   onSnapshot(queryInstruction(), (array) => {
     while (containerPosts.firstChild) {
@@ -161,6 +162,12 @@ export const feed = () => {
         btnDelete.style.display = 'block';
         btnEdit.style.display = 'block';
       }
+      //btns likes
+      let counterLikes = '';
+      if (posts.likes.length > 0){
+      counterLikes =`${posts.likes.length}`}
+      
+      //btn para eliminar publicacion
       const btnsDelete = containerPosts.querySelectorAll('#btnDelete');
       const modalForDelete = modalDelete();
       articlePost.appendChild(modalForDelete);
