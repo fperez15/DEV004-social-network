@@ -57,7 +57,6 @@ export const post = () => {
     createPost(textArea.value)
       .then(() => {
         onNavigate('/feed');
-        window.location.reload();
       })
       .catch((error) => {
         const errorCode = error.code;

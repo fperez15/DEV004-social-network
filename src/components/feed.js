@@ -8,6 +8,7 @@ import {
   queryInstruction,
   deletePost,
   getPost,
+  updatePost,
 } from '../lib/fireBase.js';
 import { modalDelete, modalEditPost } from './modal.js';
 
@@ -97,12 +98,12 @@ export const feed = () => {
   imgPost.addEventListener('click', () => onNavigate('/post'));
   const containerPosts = document.createElement('section');
   onSnapshot(queryInstruction(), (array) => {
-    while(containerPosts.firstChild){
-      containerPosts.removeChild(containerPosts.firstChild)
+    while (containerPosts.firstChild) {
+      containerPosts.removeChild(containerPosts.firstChild);
     }
     array.forEach((posts) => {
       // const containerAllPublications = document.createElement('div');
-      
+
       containerPosts.className = 'containerPosts';
       containerPosts.id = 'containerPosts';
       const articlePost = document.createElement('article');
@@ -129,6 +130,7 @@ export const feed = () => {
       btnEdit.className = 'btnEdit';
       btnEdit.id = 'btnEdit';
       btnEdit.style.display = 'none';
+      btnEdit.setAttribute('btnEdit', posts.id);
       const imgEdit = document.createElement('img');
       imgEdit.src = './img/edit-post.png';
       imgEdit.className = 'imgEdit';
@@ -179,7 +181,6 @@ export const feed = () => {
 
             // add event listener to cancel
             containerPosts.append(modalForDelete);
-
           });
           const btnCancel = modalForDelete.querySelector('#btnCancel');
           btnCancel.addEventListener('click', () => {
@@ -188,28 +189,38 @@ export const feed = () => {
           console.log('click btn delete');
         });
       });
-     const btnsEdit = containerPosts.querySelectorAll('#btnEdit');
-     btnsEdit.forEach((btn) =>{
-      if (owner === user2) {
-        const modalToEdit = modalEditPost();
-      modalToEdit.style.display = 'none';
-      containerPosts.appendChild(modalToEdit);
-      btn.addEventListener('click', async () => {
-        console.log('edite',posts.id);
-      articlePost.style.display = 'none';
-      modalToEdit.style.display = 'grid'
-      const doc = await getPost(posts.id);
-      const post = doc.data();
-      console.log('hola', doc, post);
-      modalToEdit.querySelector('.textAreaEdit').value = post.post ;
-      })
-      }
-      
-     })
-      
-    })
-    
-  })
+      const btnsEdit = containerPosts.querySelectorAll('#btnEdit');
+      btnsEdit.forEach((btn) => {
+        const getIdPost = btn.getAttribute('btnEdit');
+        if (getIdPost === posts.id) {
+          const modalToEdit = modalEditPost();
+          modalToEdit.style.display = 'none';
+          containerPosts.appendChild(modalToEdit);
+          btn.addEventListener('click', async () => {
+            articlePost.style.display = 'none';
+            modalToEdit.style.display = 'grid';
+            const doc = await getPost(posts.id);
+            const post = doc.data();
+            modalToEdit.querySelector('.userImgEdit').src = post.photo;
+            modalToEdit.querySelector('.nameUserEdit').textContent =
+              post.ownerPost;
+            modalToEdit.querySelector('.textAreaEdit').value = post.post;
+            const btnConfirmEdit =
+              modalToEdit.querySelector('.editPostConfirm');
+            btnConfirmEdit.addEventListener('click', () => {
+              const editPost = modalToEdit.querySelector('.textAreaEdit').value;
+              updatePost(posts.id, { post: editPost });
+            });
+            const btnCanceledit = modalToEdit.querySelector('.btnCancelEdit');
+            btnCanceledit.addEventListener('click', () => {
+              articlePost.style.display = 'grid';
+              modalToEdit.style.display = 'none';
+            });
+          });
+        }
+      });
+    });
+  });
 
-    return feedSection;
+  return feedSection;
 };
