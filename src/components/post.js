@@ -64,6 +64,5 @@ export const post = () => {
       });
   });
 
-  
   return postSection;
 };

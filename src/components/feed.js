@@ -11,7 +11,6 @@ import {
   updatePost,
 } from '../lib/fireBase.js';
 import { modalDelete, modalEditPost } from './modal.js';
-
 export const feed = () => {
   const feedSection = document.createElement('section');
   feedSection.className = 'feedSection';
@@ -103,7 +102,6 @@ export const feed = () => {
     }
     array.forEach((posts) => {
       // const containerAllPublications = document.createElement('div');
-
       containerPosts.className = 'containerPosts';
       containerPosts.id = 'containerPosts';
       const articlePost = document.createElement('article');
@@ -125,7 +123,6 @@ export const feed = () => {
       imgDelete.src = './img/delete-post.png';
       imgDelete.id = posts.id;
       btnDelete.appendChild(imgDelete);
-
       const btnEdit = document.createElement('button');
       btnEdit.className = 'btnEdit';
       btnEdit.id = 'btnEdit';
@@ -135,7 +132,6 @@ export const feed = () => {
       imgEdit.src = './img/edit-post.png';
       imgEdit.className = 'imgEdit';
       btnEdit.appendChild(imgEdit);
-
       const textPost = document.createElement('p');
       textPost.className = 'textPost';
       const bottomDiv = document.createElement('div');
@@ -178,7 +174,6 @@ export const feed = () => {
             deletePost(posts.id);
             // close the modalDelete
             modalForDelete.style.display = 'none';
-
             // add event listener to cancel
             containerPosts.append(modalForDelete);
           });
@@ -221,6 +216,5 @@ export const feed = () => {
       });
     });
   });
-
   return feedSection;
 };
