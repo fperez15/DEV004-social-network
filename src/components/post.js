@@ -1,6 +1,7 @@
 import { getDoc, doc } from 'firebase/firestore';
 import { onNavigate } from '../router';
 import { db, auth, createPost } from '../lib/fireBase.js';
+
 export const post = () => {
   const postSection = document.createElement('section');
   postSection.className = 'postSection';
@@ -33,6 +34,7 @@ export const post = () => {
   postSection.appendChild(logoPost);
   postSection.appendChild(articlePost);
   btnCancelPost.addEventListener('click', () => onNavigate('/feed'));
+  // Llena la información del usuario
   const user = auth.currentUser;
   if (user !== null) {
     user.providerData.forEach(async (profile) => {
@@ -45,13 +47,13 @@ export const post = () => {
       }
       const docRef = doc(db, 'users', user.uid);
       const docSnap = await getDoc(docRef);
-      // console.log('snap',user)
       if (docSnap.exists()) {
         const nameF = docSnap.data().displayName;
         nameUser.textContent = nameF;
       }
     });
   }
+  // Botón de crear post
   btnCreatePost.addEventListener('click', (e) => {
     e.preventDefault();
     createPost(textArea.value)
@@ -60,7 +62,7 @@ export const post = () => {
       })
       .catch((error) => {
         const errorCode = error.code;
-        console.log(errorCode);
+        return errorCode;
       });
   });
 

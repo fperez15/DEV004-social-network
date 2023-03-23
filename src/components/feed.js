@@ -10,9 +10,10 @@ import {
   getPost,
   updatePost,
   toLike,
-  toDislike
+  toDislike,
 } from '../lib/fireBase.js';
 import { modalDelete, modalEditPost } from './modal.js';
+
 export const feed = () => {
   const feedSection = document.createElement('section');
   feedSection.className = 'feedSection';
@@ -21,6 +22,7 @@ export const feed = () => {
   logo.className = 'logoFeed';
   logo.id = 'logoFeed';
   logo.src = './img/logo.png';
+  // Crea el menú del usuario
   const feedNav = document.createElement('nav');
   feedNav.id = 'feedNav';
   feedNav.className = 'feedNav';
@@ -65,6 +67,7 @@ export const feed = () => {
   feedSection.appendChild(feedNav);
   feedSection.appendChild(logo);
   feedSection.appendChild(divPost);
+  // Llena la información del usuario
   const user = auth.currentUser;
   if (user !== null) {
     user.providerData.forEach(async (profile) => {
@@ -77,14 +80,13 @@ export const feed = () => {
       }
       const docRef = doc(db, 'users', user.uid);
       const docSnap = await getDoc(docRef);
-      // console.log('snap',user)
       if (docSnap.exists()) {
         const nameF = docSnap.data().displayName;
         userName.textContent = nameF;
-        //  console.log('Document data:', docSnap.data().displayName);
       }
     });
   }
+  // Botón de cerrar sesión
   btnLogout.addEventListener('click', () => {
     signOutUser()
       .then(() => {
@@ -95,9 +97,10 @@ export const feed = () => {
         return errorCode;
       });
   });
+  // Botón para ir a crear post
   txtPost.addEventListener('click', () => onNavigate('/post'));
   imgPost.addEventListener('click', () => onNavigate('/post'));
-
+  // Obtenemos los post en tiempo real
   const containerPosts = document.createElement('section');
   onSnapshot(queryInstruction(), (array) => {
     while (containerPosts.firstChild) {
@@ -105,10 +108,10 @@ export const feed = () => {
     }
     array.forEach((posts) => {
       const postLikes = posts.data().likes;
-
-      // const containerAllPublications = document.createElement('div');
+      // Contenedor de todos los post
       containerPosts.className = 'containerPosts';
       containerPosts.id = 'containerPosts';
+      // Contenedor de post individual
       const articlePost = document.createElement('article');
       articlePost.className = 'articlePost';
       articlePost.id = 'articlePost';
@@ -116,7 +119,6 @@ export const feed = () => {
       imgUserPost.className = 'imgUserPost';
       const nameUserPost = document.createElement('h5');
       nameUserPost.className = 'nameUserPost';
-      // Btn Delete Post
       const btnDelete = document.createElement('button');
       btnDelete.type = 'submit';
       btnDelete.className = 'btnDelete';
@@ -144,7 +146,7 @@ export const feed = () => {
       const likesNum = document.createElement('p');
       likesNum.className = 'likesNum';
       const likeNum = postLikes.length;
-      likesNum.textContent = likeNum + ' likes';
+      likesNum.textContent = `${likeNum} likes`;
       const btnLike = document.createElement('button');
       btnLike.className = 'btnLike';
       btnLike.setAttribute('btnLikes', posts.id);
@@ -154,7 +156,7 @@ export const feed = () => {
       const dislike = document.createElement('img');
       dislike.className = 'dislike';
       dislike.src = './img/full-heart.png';
-      dislike.style.display = 'none'
+      dislike.style.display = 'none';
       bottomDiv.appendChild(likesNum);
       btnLike.appendChild(like);
       btnLike.appendChild(dislike);
@@ -167,68 +169,60 @@ export const feed = () => {
       articlePost.appendChild(bottomDiv);
       containerPosts.append(articlePost);
       feedSection.appendChild(containerPosts);
-      // containerAllPublications.appendChild(containerPosts);
-      // console.log('post', posts);
+      // Llenamos cada contendor de post
       imgUserPost.src = posts.data().photo;
       nameUserPost.textContent = posts.data().ownerPost;
       textPost.textContent = posts.data().post;
       const owner = posts.data().ownerPost;
-      const user2 = auth.currentUser.displayName;
-      if (owner === user2) {
+      const userAuth = auth.currentUser.displayName;
+      if (owner === userAuth) {
         btnDelete.style.display = 'flex';
         btnEdit.style.display = 'flex';
       }
       if (postLikes.includes(auth.currentUser.uid)) {
-        like.style.display = 'none'
-        dislike.style.display = 'flex'
+        like.style.display = 'none';
+        dislike.style.display = 'flex';
       } else {
-        like.style.display = 'flex'
-        dislike.style.display = 'none'
-
+        like.style.display = 'flex';
+        dislike.style.display = 'none';
       }
-      //btns likes
+      // Botón de like y dislike
       const btnsLikes = containerPosts.querySelectorAll('.btnLike');
       btnsLikes.forEach((btn) => {
         btn.addEventListener('click', async () => {
           const getIdPost = btn.getAttribute('btnLikes');
           if (getIdPost === posts.id) {
-            // like.style.display = 'none';
-            // dislike.style.display = 'flex';
-            const doc = await getPost(posts.id);
-            const post = doc.data();
+            const document = await getPost(posts.id);
+            const post = document.data();
             if (post.likes.includes(user.uid)) {
-              toDislike(posts.id, user.uid)
+              toDislike(posts.id, user.uid);
             } else {
-              toLike(posts.id, user.uid)
+              toLike(posts.id, user.uid);
             }
           }
-        })
-      })
+        });
+      });
 
-      //btn para eliminar publicacion
+      // Botón de eliminar post
       const btnsDelete = containerPosts.querySelectorAll('#btnDelete');
       const modalForDelete = modalDelete();
       articlePost.appendChild(modalForDelete);
       btnsDelete.forEach((btn) => {
         btn.addEventListener('click', () => {
-          // Open the Modal Delete
           modalForDelete.style.display = 'block';
           const confirmBtnDelete = modalForDelete.querySelector('#btnAgree');
           confirmBtnDelete.addEventListener('click', () => {
-            console.log('target', posts.id);
             deletePost(posts.id);
-            // close the modalDelete
             modalForDelete.style.display = 'none';
-            // add event listener to cancel
             containerPosts.append(modalForDelete);
           });
           const btnCancel = modalForDelete.querySelector('#btnCancel');
           btnCancel.addEventListener('click', () => {
             modalForDelete.style.display = 'none';
           });
-          console.log('click btn delete');
         });
       });
+      // Botón de editar post
       const btnsEdit = containerPosts.querySelectorAll('#btnEdit');
       btnsEdit.forEach((btn) => {
         const getIdPost = btn.getAttribute('btnEdit');
@@ -239,14 +233,12 @@ export const feed = () => {
           btn.addEventListener('click', async () => {
             articlePost.style.display = 'none';
             modalToEdit.style.display = 'grid';
-            const doc = await getPost(posts.id);
-            const post = doc.data();
+            const document = await getPost(posts.id);
+            const post = document.data();
             modalToEdit.querySelector('.userImgEdit').src = post.photo;
-            modalToEdit.querySelector('.nameUserEdit').textContent =
-              post.ownerPost;
+            modalToEdit.querySelector('.nameUserEdit').textContent = post.ownerPost;
             modalToEdit.querySelector('.textAreaEdit').value = post.post;
-            const btnConfirmEdit =
-              modalToEdit.querySelector('.editPostConfirm');
+            const btnConfirmEdit = modalToEdit.querySelector('.editPostConfirm');
             btnConfirmEdit.addEventListener('click', () => {
               const editPost = modalToEdit.querySelector('.textAreaEdit').value;
               updatePost(posts.id, { post: editPost });

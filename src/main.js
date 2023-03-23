@@ -12,7 +12,7 @@ addRoutes({
   '/feed': feed,
   '/post': post,
 });
-// logica de la aplicacion
+// Lógica de la aplicacion
 window.onload = () => {
   onNavigate(window.location.pathname);
 };

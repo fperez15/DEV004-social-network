@@ -23,12 +23,12 @@ jest.mock('@firebase/firestore', () => ({
 })); */
 
 describe('función createUser', () => {
-  it('debería redirigir a /feed', () => {
+  it('.then => debería redirigir a /feed', () => {
     // eslint-disable-next-line
     fireBase.createUser = jest.fn().mockResolvedValue({ user: { uid: 'user-uid' } });
     document.body.innerHTML = "<section id='root'></section>";
     addRoutes({
-      '/feed': () => {},
+      '/feed': () => { },
     });
     // PASO 1 : pintar la vista de registro
     const sectionRegister = register();
@@ -44,64 +44,8 @@ describe('función createUser', () => {
       expect(window.location.pathname).toBe('/feed');
     });
   });
-});
 
-describe('función LogIn', () => {
-  it('debería iniciar sesión', () => {
-    // eslint-disable-next-line
-    fireBase.logIn = jest.fn().mockResolvedValue({ user: { uid: 'user-uid' } });
-    document.body.innerHTML = "<section id='root'></section>";
-    addRoutes({
-      '/feed': () => {},
-    });
-    const sectionHome = home();
-    sectionHome.querySelector('#email').value = 'test@test.com';
-    sectionHome.querySelector('#password').value = '123456';
-
-    sectionHome.querySelector('#formLogin').dispatchEvent(new Event('submit'));
-
-    return Promise.resolve().then(() => {
-      expect(window.location.pathname).toBe('/feed');
-    });
-  });
-});
-
-describe('función LogIn with Google', () => {
-  it('debería iniciar sesión con Google', () => {
-    // eslint-disable-next-line
-    fireBase.logInGoogle = jest.fn().mockResolvedValue({ user: { uid: 'user-uid' } });
-    document.body.innerHTML = "<section id='root'></section>";
-    addRoutes({
-      '/feed': () => {},
-    });
-    const sectionHome = home();
-    sectionHome.querySelector('#btnGoogle').dispatchEvent(new Event('click'));
-
-    return Promise.resolve().then(() => {
-      expect(window.location.pathname).toBe('/feed');
-    });
-  });
-});
-
-describe('función signOut', () => {
-  it('deberia cerrar sesión', () => {
-    // eslint-disable-next-line
-    fireBase.signOutUser = jest.fn().mockResolvedValue();
-    document.body.innerHTML = "<section id='root'></section>";
-    addRoutes({
-      '/': () => {},
-    });
-    const sectionFeed = feed();
-    sectionFeed.querySelector('#btnLogout').dispatchEvent(new Event('click'));
-    return Promise.resolve().then(() => {
-      expect(window.location.pathname).toBe('/');
-    });
-  });
-});
-
-// ---------- Testing CATCH register.js ---------- //
-describe('función createUser.catch', () => {
-  it('debería decir contraseña inválida', () => {
+  it('.catch => debería decir contraseña inválida', () => {
     // eslint-disable-next-line
     fireBase.createUser = jest.fn().mockRejectedValueOnce({ code: 'auth/weak-password' });
     document.body.innerHTML = "<section id='root'></section>";
@@ -120,7 +64,7 @@ describe('función createUser.catch', () => {
     });
   });
 
-  it('debería decir los campos no pueden estar vacíos', () => {
+  it('.catch => debería decir los campos no pueden estar vacíos', () => {
     // eslint-disable-next-line
     fireBase.createUser = jest.fn().mockRejectedValueOnce({ code: 'auth/network-request-failed.' });
     document.body.innerHTML = "<section id='root'></section>";
@@ -139,7 +83,7 @@ describe('función createUser.catch', () => {
     });
   });
 
-  it('debería decir email inválido', () => {
+  it('.catch => debería decir email inválido', () => {
     // eslint-disable-next-line
     fireBase.createUser = jest.fn().mockRejectedValueOnce({ code: 'auth/invalid-email' });
     document.body.innerHTML = "<section id='root'></section>";
@@ -157,7 +101,8 @@ describe('función createUser.catch', () => {
       }
     });
   });
-  it('debería decir falta email', () => {
+
+  it('.catch => debería decir falta email', () => {
     // eslint-disable-next-line
     fireBase.createUser = jest.fn().mockRejectedValueOnce({ code: 'auth/missing-email' });
     document.body.innerHTML = "<section id='root'></section>";
@@ -176,7 +121,7 @@ describe('función createUser.catch', () => {
     });
   });
 
-  it('debería decir correo ya registrado', () => {
+  it('.catch => debería decir correo ya registrado', () => {
     // eslint-disable-next-line
     fireBase.createUser = jest.fn().mockRejectedValueOnce({ code: 'auth/email-already-in-use' });
     document.body.innerHTML = "<section id='root'></section>";
@@ -195,7 +140,7 @@ describe('función createUser.catch', () => {
     });
   });
 
-  it('debería decir la contraseña no puede estar vacía', () => {
+  it('.catch => debería decir la contraseña no puede estar vacía', () => {
     // eslint-disable-next-line
     fireBase.createUser = jest.fn().mockRejectedValueOnce({ code: 'auth/internal-error' });
     document.body.innerHTML = "<section id='root'></section>";
@@ -215,14 +160,31 @@ describe('función createUser.catch', () => {
   });
 });
 
-// ---------- Testing CATCH home.js ---------- //
-describe('función LogIn.catch', () => {
-  it('debería decir que los campos no pueden estar vacíos', () => {
+describe('función LogIn', () => {
+  it('.then => debería iniciar sesión', () => {
+    // eslint-disable-next-line
+    fireBase.logIn = jest.fn().mockResolvedValue({ user: { uid: 'user-uid' } });
+    document.body.innerHTML = "<section id='root'></section>";
+    addRoutes({
+      '/feed': () => { },
+    });
+    const sectionHome = home();
+    sectionHome.querySelector('#email').value = 'test@test.com';
+    sectionHome.querySelector('#password').value = '123456';
+
+    sectionHome.querySelector('#formLogin').dispatchEvent(new Event('submit'));
+
+    return Promise.resolve().then(() => {
+      expect(window.location.pathname).toBe('/feed');
+    });
+  });
+
+  it('.catch => debería decir que los campos no pueden estar vacíos', () => {
     // eslint-disable-next-line
     fireBase.logIn = jest.fn().mockRejectedValueOnce({ code: 'auth/invalid-email' });
     document.body.innerHTML = "<section id='root'></section>";
     addRoutes({
-      '/feed': () => {},
+      '/feed': () => { },
     });
     const sectionHome = home();
     sectionHome.querySelector('#email').value = '';
@@ -236,12 +198,12 @@ describe('función LogIn.catch', () => {
     });
   });
 
-  it('debería decir que el correo no está registrado', () => {
+  it('.catch => debería decir que el correo no está registrado', () => {
     // eslint-disable-next-line
     fireBase.logIn = jest.fn().mockRejectedValueOnce({ code: 'auth/user-not-found' });
     document.body.innerHTML = "<section id='root'></section>";
     addRoutes({
-      '/feed': () => {},
+      '/feed': () => { },
     });
     const sectionHome = home();
     sectionHome.querySelector('#email').value = 'pepita@test.com';
@@ -255,12 +217,12 @@ describe('función LogIn.catch', () => {
     });
   });
 
-  it('debería decir que la contraseña es incorrecta', () => {
+  it('.catch => debería decir que la contraseña es incorrecta', () => {
     // eslint-disable-next-line
     fireBase.logIn = jest.fn().mockRejectedValueOnce({ code: 'auth/wrong-password' });
     document.body.innerHTML = "<section id='root'></section>";
     addRoutes({
-      '/feed': () => {},
+      '/feed': () => { },
     });
     const sectionHome = home();
     sectionHome.querySelector('#email').value = 'pepita@test.com';
@@ -275,13 +237,28 @@ describe('función LogIn.catch', () => {
   });
 });
 
-describe('función LogIn with Google.catch', () => {
-  it('no debería iniciar sesión con Google', () => {
+describe('función LogIn with Google', () => {
+  it('.then => debería iniciar sesión con Google', () => {
+    // eslint-disable-next-line
+    fireBase.logInGoogle = jest.fn().mockResolvedValue({ user: { uid: 'user-uid' } });
+    document.body.innerHTML = "<section id='root'></section>";
+    addRoutes({
+      '/feed': () => { },
+    });
+    const sectionHome = home();
+    sectionHome.querySelector('#btnGoogle').dispatchEvent(new Event('click'));
+
+    return Promise.resolve().then(() => {
+      expect(window.location.pathname).toBe('/feed');
+    });
+  });
+
+  it('.catch => no debería iniciar sesión con Google', () => {
     // eslint-disable-next-line
     fireBase.logInGoogle = jest.fn().mockRejectedValueOnce({ code: 'auth/popup-closed-by-user' });
     document.body.innerHTML = "<section id='root'></section>";
     addRoutes({
-      '/': () => {},
+      '/': () => { },
     });
     const sectionHome = home();
     sectionHome.querySelector('#btnGoogle').dispatchEvent(new Event('click'));
@@ -290,6 +267,22 @@ describe('función LogIn with Google.catch', () => {
       if (sectionHome.querySelector('#errorHome').style.display === 'block') {
         expect(sectionHome.querySelector('#errorHome').textContent).toEqual('Something went wrong.');
       }
+    });
+  });
+});
+
+describe('función signOut', () => {
+  it('deberia cerrar sesión', () => {
+    // eslint-disable-next-line
+    fireBase.signOutUser = jest.fn().mockResolvedValue();
+    document.body.innerHTML = "<section id='root'></section>";
+    addRoutes({
+      '/': () => { },
+    });
+    const sectionFeed = feed();
+    sectionFeed.querySelector('#btnLogout').dispatchEvent(new Event('click'));
+    return Promise.resolve().then(() => {
+      expect(window.location.pathname).toBe('/');
     });
   });
 });

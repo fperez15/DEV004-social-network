@@ -13,11 +13,10 @@ export const register = () => {
   errorRegister.className = 'errorRegister';
   errorRegister.id = 'errorRegister';
   errorRegister.style.display = 'none';
-
+  // Crea formulario de registro de usuario
   const formRegister = document.createElement('form');
   formRegister.id = 'formRegister';
   formRegister.className = 'formRegister';
-
   const inpName = document.createElement('input');
   inpName.className = 'form';
   inpName.id = 'name';
@@ -55,7 +54,7 @@ export const register = () => {
   registerSection.appendChild(logo);
   registerSection.appendChild(errorRegister);
   registerSection.appendChild(formRegister);
-
+  // Registro del usuario
   formRegister.addEventListener('submit', (e) => {
     e.preventDefault();
     createUser(inpEmail.value, inpPassword.value, inpName.value, inpDate.value)

@@ -14,11 +14,10 @@ export const home = () => {
   errorHome.className = 'errorHome';
   errorHome.id = 'errorHome';
   errorHome.style.display = 'none';
-
+  // Crea formulario de iniciar sesión
   const formLogin = document.createElement('form');
   formLogin.className = 'formLogin';
   formLogin.id = 'formLogin';
-
   const inpEmail = document.createElement('input');
   inpEmail.className = 'form';
   inpEmail.id = 'email';
@@ -73,10 +72,10 @@ export const home = () => {
   homeSection.appendChild(btnGoogle);
   homeSection.appendChild(btnHomeRegister);
 
-  // Go to /register
+  // Ir a formulario de registro
   btnHomeRegister.addEventListener('click', () => onNavigate('/register'));
 
-  // Login with email
+  // Inicia sesión con email y contraseña
   formLogin.addEventListener('submit', (e) => {
     e.preventDefault();
     logIn(inpEmail.value, inpPassword.value)
@@ -102,7 +101,7 @@ export const home = () => {
       });
   });
 
-  // Login with Google
+  // Inicia sesión con Google
   btnGoogle.addEventListener('click', () => {
     logInGoogle()
       .then(() => {
