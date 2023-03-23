@@ -95,7 +95,7 @@ export const createPost = (post) => {
     createDate: serverTimestamp(),
     id: auth.currentUser.uid,
     likes,
-    uid,
+    // uid,
   });
 };
 

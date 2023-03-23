@@ -8,7 +8,7 @@ export const post = () => {
   logoPost.className = 'logoPost';
   logoPost.src = './img/logo.png';
   const articlePost = document.createElement('article');
-  articlePost.className = 'articlePost';
+  articlePost.className = 'articleCreatePost';
   const userImg = document.createElement('img');
   userImg.className = 'userImg';
   const nameUser = document.createElement('h5');
