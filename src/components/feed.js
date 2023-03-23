@@ -123,6 +123,7 @@ export const feed = () => {
       btnDelete.type = 'submit';
       btnDelete.className = 'btnDelete';
       btnDelete.id = 'btnDelete';
+      btnDelete.setAttribute('btnDelete', posts.id);
       btnDelete.value = posts.id;
       btnDelete.style.display = 'none';
       const imgDelete = document.createElement('img');
@@ -207,20 +208,24 @@ export const feed = () => {
       const btnsDelete = containerPosts.querySelectorAll('#btnDelete');
       const modalForDelete = modalDelete();
       articlePost.appendChild(modalForDelete);
-      btnsDelete.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          modalForDelete.style.display = 'block';
-          const confirmBtnDelete = modalForDelete.querySelector('#btnAgree');
-          confirmBtnDelete.addEventListener('click', () => {
-            deletePost(posts.id);
-            modalForDelete.style.display = 'none';
-            containerPosts.append(modalForDelete);
+      btnsDelete.forEach((btn) => { 
+        const getIdPostDelete = btn.getAttribute('btnDelete'); 
+        if (getIdPostDelete === posts.id) {
+          btn.addEventListener('click', () => {
+            modalForDelete.style.display = 'block';
+            const confirmBtnDelete = modalForDelete.querySelector('#btnAgree');
+            confirmBtnDelete.addEventListener('click', () => {
+              deletePost(posts.id);
+              modalForDelete.style.display = 'none';
+              containerPosts.append(modalForDelete);
+            });
+            const btnCancel = modalForDelete.querySelector('#btnCancel');
+            btnCancel.addEventListener('click', () => {
+              modalForDelete.style.display = 'none';
+            });
           });
-          const btnCancel = modalForDelete.querySelector('#btnCancel');
-          btnCancel.addEventListener('click', () => {
-            modalForDelete.style.display = 'none';
-          });
-        });
+        }      
+       
       });
       // Botón de editar post
       const btnsEdit = containerPosts.querySelectorAll('#btnEdit');

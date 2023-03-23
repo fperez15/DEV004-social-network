@@ -3,8 +3,6 @@ export function modalDelete() {
   const modalForDelete = document.createElement('div');
   modalForDelete.className = 'modalForDelete';
   modalForDelete.id = 'modalForDelete';
-  const innerModalDelete = document.createElement('div');
-  innerModalDelete.className = 'containerModalDelete';
   const titleModal = document.createElement('p');
   titleModal.textContent = 'Do you want to delete this post?';
   titleModal.className = 'titleModal';
@@ -16,8 +14,7 @@ export function modalDelete() {
   btnCancel.textContent = 'CANCEL';
   btnCancel.className = 'btnCancel';
   btnCancel.id = 'btnCancel';
-  innerModalDelete.append(titleModal, btnAgree, btnCancel);
-  modalForDelete.append(innerModalDelete);
+  modalForDelete.append(titleModal, btnAgree, btnCancel);
   modalForDelete.style.display = 'none';
   return modalForDelete;
 }
