@@ -263,6 +263,13 @@ li:hover {
   grid-row-end: 2;
 }
 /* --------------- feed.js 'ALL POSTS' STYLE --------------- */
+.containerPosts {
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .articlePost{
   display: grid;
   background-color:#fef6e4;
@@ -271,10 +278,9 @@ li:hover {
   border-radius: 8px;
   grid-template-rows: repeat(4, 1fr);
   grid-template-columns: repeat(4, 1fr) ;
-  margin-top: 15px;
-  margin-left: 30px;
   padding-top: 15px;
   box-shadow: 2px 5px 5px 0px rgba(0,24,88,0.75);
+  margin-bottom: 10px;
 }
 .imgUserPost{
   display: flex;
@@ -311,9 +317,29 @@ li:hover {
   grid-row-start: 4;
   grid-row-end: 5;
   border-radius: 0 0 8px 8px;
+  justify-content: space-between;
 }
-.btnEdit{
+.like, .dislike{
+  height: 20px;
+  background-color: transparent;
+
+}
+
+.btnLike {
+  border: none;
+  background-color: transparent;
+  
+}
+
+.likesNum {
+  background-color: transparent;
   display: flex;
+  align-items: center;
+  margin-left: 10px;
+  color: #001858;
+}
+
+.btnEdit{
   width: 35px;
   height: 20px;
   grid-column-start: 4;
@@ -324,15 +350,15 @@ li:hover {
   border: none;
 }
 .btnDelete{
-  display: flex;
   width: 35px;
   height: 20px;
   grid-column-start: 4;
   grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 2;
-  justify-self: start;
+  justify-self: end;
   border: none;
+  margin-right: 30px;
 }
 .imgDelete {
   width: 100%;
@@ -388,8 +414,8 @@ li:hover {
   width: 75%;
   height: 70%;
   border-radius: 8px;
-  grid-template-rows: repeat(4, 1fr);
-  grid-template-columns: repeat(5, 1fr) ;
+  grid-template-rows: 20% 40% 20%;
+  grid-template-columns: 20% 20% 30% 30%;
   margin-top: 15px;
   margin-left: 30px;
   padding-top: 15px;
@@ -400,6 +426,7 @@ li:hover {
   border-radius: 50%;
   width: 35px;
   margin-left: 10px;
+  align-self: center;
   }
 .nameUserEdit{
   display: flex;
@@ -409,7 +436,8 @@ li:hover {
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;
-  margin-top: 10px;
+  align-self: center;
+  margin-left: 5px;
 }
 .textAreaEdit{
   display: flex;
@@ -418,7 +446,7 @@ li:hover {
   grid-column-start: 1;
   grid-column-end: 5;
   grid-row-start: 2;
-  grid-row-end: 5;
+  grid-row-end: 3;
   margin: 10px 10px 10px 30px;
 }
 
@@ -431,10 +459,10 @@ li:hover {
   border: none;
   grid-column-start: 3;
   grid-column-end: 4;
-  grid-row-start: 5;
-  grid-row-end: 6;
+  grid-row-start: 3;
+  grid-row-end: 4;
   display: flex;
-  margin: 8px 6px;
+  margin: 8px 2px;
 }
 .editPostConfirm{
   background-color: #F582AE;
@@ -445,10 +473,10 @@ li:hover {
   border: none;
   grid-column-start: 4;
   grid-column-end: 5;
-  grid-row-start: 5;
-  grid-row-end: 6;
+  grid-row-start: 3;
+  grid-row-end: 4;
   display: flex;
-  margin: 8px 6px;
+  margin: 8px 2px;
   justify-content: center;
 }
 
@@ -456,9 +484,4 @@ li:hover {
 
 
 /* --------------- modal.js 'like y dislike' STYLE --------------- */
-.like{
-  height: 20px;
-}
-.dislike{
-  height: 20px;
-}
+

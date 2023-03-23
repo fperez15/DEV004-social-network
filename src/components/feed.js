@@ -144,7 +144,7 @@ export const feed = () => {
       const likesNum = document.createElement('p');
       likesNum.className = 'likesNum';
       const likeNum = postLikes.length;
-      likesNum.textContent = likeNum + 'like';
+      likesNum.textContent = likeNum + ' likes';
       const btnLike = document.createElement('button');
       btnLike.className = 'btnLike';
       btnLike.setAttribute('btnLikes', posts.id);
@@ -175,8 +175,8 @@ export const feed = () => {
       const owner = posts.data().ownerPost;
       const user2 = auth.currentUser.displayName;
       if (owner === user2) {
-        btnDelete.style.display = 'block';
-        btnEdit.style.display = 'block';
+        btnDelete.style.display = 'flex';
+        btnEdit.style.display = 'flex';
       }
       if (postLikes.includes(auth.currentUser.uid)) {
         like.style.display = 'none'
