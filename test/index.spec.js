@@ -3,6 +3,8 @@ import { home } from '../src/components/home.js';
 import { feed } from '../src/components/feed.js';
 import * as fireBase from '../src/lib/fireBase.js';
 import { addRoutes } from '../src/router/index.js';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { async } from 'regenerator-runtime';
 
 /* jest.mock('@firebase/auth', () => ({
   createUserWithEmailAndPassword: () => Promise.resolve({ user: { uid: 'user-uid' } }),
@@ -286,3 +288,29 @@ describe('función signOut', () => {
     });
   });
 });
+
+  jest.mock('@firebase/auth', () => ({
+  createUserWithEmailAndPassword: () => Promise.resolve({ user: { email: 'test@test.com' } }),
+  updateProfile: () => ({}),
+  getAuth: () => ({ currentUser: { uid: 'user-uid' } }),
+  signInWithEmailAndPassword: () => Promise.resolve({ user: { uid: 'user-uid' } }),
+  GoogleAuthProvider: class {},
+  signInWithPopup: () => Promise.resolve({ user: 'stringGoogle' }),
+
+}));
+  jest.mock('@firebase/firestore', () => ({
+  doc: jest.fn(),
+  setDoc: jest.fn(),
+  getFirestore: () => ({ }),
+}));
+
+const sinon = require('sinon');
+const firebase = require('firebase');
+const { expect } = require('chai');
+ 
+describe.only('funcion createUser with email and password', () => {
+  it('deberia autenticar al usuario', async () => {
+    const createUserWithEmailAndPasswordStub = sinon.stub(firebase.auth, 'createUserWithEmailAndPassword');
+    await expect(userCredential.user).resolve.toEqual({email:'test@test.com', password:'123456'})  
+   })
+})

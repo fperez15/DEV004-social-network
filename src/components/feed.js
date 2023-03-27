@@ -208,8 +208,8 @@ export const feed = () => {
       const btnsDelete = containerPosts.querySelectorAll('#btnDelete');
       const modalForDelete = modalDelete();
       articlePost.appendChild(modalForDelete);
-      btnsDelete.forEach((btn) => { 
-        const getIdPostDelete = btn.getAttribute('btnDelete'); 
+      btnsDelete.forEach((btn) => {
+        const getIdPostDelete = btn.getAttribute('btnDelete');
         if (getIdPostDelete === posts.id) {
           btn.addEventListener('click', () => {
             modalForDelete.style.display = 'block';
@@ -224,8 +224,7 @@ export const feed = () => {
               modalForDelete.style.display = 'none';
             });
           });
-        }      
-       
+        }
       });
       // Botón de editar post
       const btnsEdit = containerPosts.querySelectorAll('#btnEdit');

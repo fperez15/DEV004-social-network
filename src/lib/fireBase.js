@@ -115,7 +115,7 @@ export const onGetPosts = () => {
   return post;
 };
 // Elimina post
-export const deletePost = async (id) => await deleteDoc(doc(db, 'post',id));
+export const deletePost = (id) => deleteDoc(doc(db, 'post', id));
 
 // Obtiene la información de los post
 export const getPost = (id) => getDoc(doc(db, 'post', id));
