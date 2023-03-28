@@ -1,28 +1,9 @@
 import { register } from '../src/components/register.js';
 import { home } from '../src/components/home.js';
 import { feed } from '../src/components/feed.js';
+import { post } from '../src/components/post.js';
 import * as fireBase from '../src/lib/fireBase.js';
 import { addRoutes } from '../src/router/index.js';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import { async } from 'regenerator-runtime';
-
-/* jest.mock('@firebase/auth', () => ({
-  createUserWithEmailAndPassword: () => Promise.resolve({ user: { uid: 'user-uid' } }),
-  updateProfile: () => ({}),
-  getAuth: () => ({ currentUser: { uid: 'user-uid' } }),
-  signInWithEmailAndPassword: () => Promise.resolve({ user: { uid: 'user-uid' } }),
-  GoogleAuthProvider: class {},
-  signInWithPopup: () => Promise.resolve({ user: 'stringGoogle' }),
-
-}));
-jest.mock('@firebase/firestore', () => ({
-  doc: jest.fn(),
-  setDoc: jest.fn(),
-  getFirestore: () => ({ }),
-})); */
-/* jest.mock('../src/lib/fireBase.js', () => ({
-  createUser: () => Promise.resolve({ user: { uid: 'user-uid' } }),
-})); */
 
 describe('función createUser', () => {
   it('.then => debería redirigir a /feed', () => {
@@ -289,28 +270,50 @@ describe('función signOut', () => {
   });
 });
 
-  jest.mock('@firebase/auth', () => ({
-  createUserWithEmailAndPassword: () => Promise.resolve({ user: { email: 'test@test.com' } }),
-  updateProfile: () => ({}),
-  getAuth: () => ({ currentUser: { uid: 'user-uid' } }),
-  signInWithEmailAndPassword: () => Promise.resolve({ user: { uid: 'user-uid' } }),
-  GoogleAuthProvider: class {},
-  signInWithPopup: () => Promise.resolve({ user: 'stringGoogle' }),
+describe('función crear post.js', () => {
+  it('.then => debería crear cada post individual', () => {
+    fireBase.createPost = jest.fn().mockResolvedValue();
+    document.body.innerHTML = "<section id='root'></section>";
+    addRoutes({
+      '/feed': () => { },
+    });
+    const sectionPOst = post();
+    sectionPOst.querySelector('#inpPost').value = 'Ejemplo de post';
+    sectionPOst.querySelector('#btnCreatePost').dispatchEvent(new Event('click'));
+    return Promise.resolve().then(() => {
+      expect(window.location.pathname).toEqual('/feed');
+    });
+  });
+  it('.catch => debería crear cada post individual', () => {
+    fireBase.createPost = jest.fn().mockRejectedValueOnce({ code: 'error' });
+    document.body.innerHTML = "<section id='root'></section>";
+    addRoutes({
+      '/feed': () => { },
+    });
+    const sectionPOst = post();
+    sectionPOst.querySelector('#inpPost').value = 'Ejemplo de post';
+    sectionPOst.querySelector('#btnCreatePost').dispatchEvent(new Event('click'));
+    return Promise.reject().catch(() => {
+      expect(code).toBe('error');
+    });
+  });
+});
 
-}));
-  jest.mock('@firebase/firestore', () => ({
-  doc: jest.fn(),
-  setDoc: jest.fn(),
-  getFirestore: () => ({ }),
-}));
-
-const sinon = require('sinon');
-const firebase = require('firebase');
-const { expect } = require('chai');
- 
-describe.only('funcion createUser with email and password', () => {
-  it('deberia autenticar al usuario', async () => {
-    const createUserWithEmailAndPasswordStub = sinon.stub(firebase.auth, 'createUserWithEmailAndPassword');
-    await expect(userCredential.user).resolve.toEqual({email:'test@test.com', password:'123456'})  
-   })
-})
+/*jest.mock('@firebase/auth', () => ({
+ query: jest.fn(),
+}));*/
+/* describe('funciones de feed', () => {
+  it('debería dar like', () => {
+    fireBase.toLike = jest.fn().mockResolvedValue({ post: { id: 'post-id' } });
+    document.body.innerHTML = "<section id='root'></section>";
+    const sectionFeed = feed();
+      fireBase.onSnapshot = jest.fn().mockImplementation(fireBase.queryInstruction = jest.fn(), (posts) => {
+        posts({post1: {post: 'text1'}, post2: {post: 'text2'}, post3: {post: 'text3'}})
+        sectionFeed.querySelector('#btnLike').dispatchEvent(new Event('click'));
+        return Promise.resolve().then(() => {
+          expect(sectionFeed.querySelector('.dislike').style.display).toBe('flex');
+        });
+      })
+      })
+    });
+*/

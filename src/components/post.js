@@ -19,12 +19,14 @@ export const post = () => {
   textArea.rows = '10';
   textArea.cols = '50';
   textArea.className = 'inpPost';
+  textArea.id = 'inpPost';
   textArea.placeholder = 'What would you like to share?';
   const btnCancelPost = document.createElement('button');
   btnCancelPost.className = 'btnCancelPost';
   btnCancelPost.textContent = 'CANCEL';
   const btnCreatePost = document.createElement('button');
   btnCreatePost.className = 'btnCreatePost';
+  btnCreatePost.id = 'btnCreatePost';
   btnCreatePost.textContent = 'POST';
   articlePost.appendChild(userImg);
   articlePost.appendChild(nameUser);
