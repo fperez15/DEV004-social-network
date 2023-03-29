@@ -203,7 +203,7 @@ li:hover {
   color: #001858;
 }
 .btnCancelPost{
-  background-color: #F582AE;
+  background-color: transparent;
   color: #001858;
   font-weight: bold;
   border-radius: 5px;
@@ -216,6 +216,9 @@ li:hover {
   display: flex;
   margin: 8px 6px;
   justify-content: center;
+}
+.btnCancelPost:hover{
+  border: #001858 solid 2px;
 }
 .btnCreatePost{
   background-color: #F582AE;
@@ -231,6 +234,10 @@ li:hover {
   display: flex;
   margin: 8px 6px;
   justify-content: center;
+}
+.btnCreatePost:hover{
+  background-color: #D95E8D;
+  color: white;
 }
 .userImg {
   width: 45px;
@@ -353,7 +360,7 @@ li:hover {
 }
 /* --------------- modal.js 'confirm delete post' STYLE --------------- */
 .modalForDelete{
-  height: 10%;
+  height: 12%;
   width: 60%;
   border-radius: 8px;
   padding-top: 15px;
@@ -431,7 +438,7 @@ li:hover {
   margin: 10px 10px 10px 30px;
 }
 .btnCancelEdit{
-  background-color: #F582AE;
+  background-color: transparent;
   color: #001858;
   font-weight: bold;
   border-radius: 5px;
@@ -444,6 +451,9 @@ li:hover {
   display: flex;
   margin: 8px 2px;
   justify-content: center;
+}
+.btnCancelEdit:hover{
+  border: #001858 solid 2px;
 }
 .editPostConfirm{
   background-color: #F582AE;
@@ -459,6 +469,10 @@ li:hover {
   display: flex;
   margin: 8px 2px;
   justify-content: center;
+}
+.editPostConfirm:hover{
+  background-color: #D95E8D;
+  color: white;
 }
 
 /*--------------------------------- Media Query type Destok--------------------------------- */

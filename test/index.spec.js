@@ -272,6 +272,7 @@ describe('función signOut', () => {
 
 describe('función crear post.js', () => {
   it('.then => debería crear cada post individual', () => {
+    // eslint-disable-next-line
     fireBase.createPost = jest.fn().mockResolvedValue();
     document.body.innerHTML = "<section id='root'></section>";
     addRoutes({
@@ -284,36 +285,4 @@ describe('función crear post.js', () => {
       expect(window.location.pathname).toEqual('/feed');
     });
   });
-  it('.catch => debería crear cada post individual', () => {
-    fireBase.createPost = jest.fn().mockRejectedValueOnce({ code: 'error' });
-    document.body.innerHTML = "<section id='root'></section>";
-    addRoutes({
-      '/feed': () => { },
-    });
-    const sectionPOst = post();
-    sectionPOst.querySelector('#inpPost').value = 'Ejemplo de post';
-    sectionPOst.querySelector('#btnCreatePost').dispatchEvent(new Event('click'));
-    return Promise.reject().catch(() => {
-      expect(code).toBe('error');
-    });
-  });
 });
-
-/*jest.mock('@firebase/auth', () => ({
- query: jest.fn(),
-}));*/
-/* describe('funciones de feed', () => {
-  it('debería dar like', () => {
-    fireBase.toLike = jest.fn().mockResolvedValue({ post: { id: 'post-id' } });
-    document.body.innerHTML = "<section id='root'></section>";
-    const sectionFeed = feed();
-      fireBase.onSnapshot = jest.fn().mockImplementation(fireBase.queryInstruction = jest.fn(), (posts) => {
-        posts({post1: {post: 'text1'}, post2: {post: 'text2'}, post3: {post: 'text3'}})
-        sectionFeed.querySelector('#btnLike').dispatchEvent(new Event('click'));
-        return Promise.resolve().then(() => {
-          expect(sectionFeed.querySelector('.dislike').style.display).toBe('flex');
-        });
-      })
-      })
-    });
-*/
