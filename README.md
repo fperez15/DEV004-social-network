@@ -221,7 +221,7 @@ Se realizaron un total de 15 tests, que evalúan 5 funciones del código.
 
 ## 8. Resultado final
 
-![Página desplegada]()
+![Página desplegada](https://64246c325a8e9800b803f21f--elegant-maamoul-076eff.netlify.app/)
 
 ### 8.1 Versión móvil
 
