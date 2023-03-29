@@ -1,0 +1,571 @@
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+* {
+  background-color: #FEF6E4;
+  font-family: "Questrial", sans-serif;
+  margin: 0;
+}
+#regSection,
+#homeSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#logo {
+  max-width: 90%;
+}
+.formRegister,
+.formLogin {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form {
+  background-color: #F3D2C1;
+  padding: 5px 0 5px 0;
+  border: 0;
+  border-radius: 5px;
+  text-align: center;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+#inpDate {
+  padding: 3px 15px 3px 15px;
+  color: #777777;
+}
+.btnHomeRegister {
+  background-color: #F582AE;
+  color: #001858;
+  font-weight: 600;
+  border: 0;
+  border-radius: 5px;
+  padding: 8px 20px 8px 20px;
+  cursor: pointer;
+}
+.btnRegister,
+.btnLogin {
+  background-color: #F582AE;
+  color: #001858;
+  font-weight: 600;
+  border: 0;
+  border-radius: 5px;
+  padding: 8px 20px 8px 20px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+.division {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+.line,
+.line2 {
+  height: 1px;
+  background-color: #001858;
+  width: 50px;
+  margin-top: 20px;
+}
+.or {
+  color: #001858;
+}
+.btnRegister:hover,
+.btnLogin:hover,
+.btnHomeRegister:hover {
+  background-color: #D95E8D;
+  color: #FEF6E4;
+}
+.btnGoogle {
+  width: 150px;
+  padding: 10px 15px 10px 15px;
+}
+/* --------------- post.js STYLE --------------- */
+.feedNav {
+  position: absolute;
+  height: 10%;
+  width: 60px;
+  overflow: hidden;
+  transition: width 0.2s linear;
+}
+.feedNav:hover {
+  width: 170px;
+  height: 100px;
+  transition: all 0.5s ease;
+  background-color: #F3D2C1;
+}
+.ulMenu {
+  margin: 5px 0 0 5px;
+  padding: 0;
+  background-color: transparent;
+  }
+.imgUser {
+  text-align: center;
+  display: flex;
+  transition: all 0.5s ease;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+.userName {
+  color: #001858;
+  position: relative;
+  background-color: #F3D2C1;
+  top: 12px;
+}
+li {
+  position: relative;
+  width: 300px;
+  display: flex;
+  gap: 10px;
+  background-color: transparent;
+}
+li:hover {
+  background-color: #F3D2C1;
+}
+.btnLogout {
+  background-color: #F582AE;
+  color: #001858;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-left: 40px;
+  margin-top: 10px;
+  text-align: left;
+  padding: 3px;
+  line-height: 20px;
+}
+.btnLogout:hover {
+  background-color: #D95E8D;
+  color: #001858;
+}
+.imgLogout{
+  width: 20px;
+  background-color: transparent;
+  float: right;
+ }
+.feedSection {
+  display: flex;
+  flex-direction: column;
+}
+.logoFeed {
+  max-width: 20%;
+  align-self: center;
+}
+.divPost {
+  background-color: #F3D2C1;
+  display: flex;
+  height: 40px;
+  gap: 5px;
+}
+.txtPost {
+  background-color: #F3D2C1;
+  color: #001858;
+  margin-top: 15px;
+}
+.imgPost {
+  height: 90%;
+  background-color: #F3D2C1;
+  margin-left: 5px;
+  margin-top: 3px;
+}
+/* --------------- post.js STYLE --------------- */
+.postSection {
+  display: grid;
+  justify-items: center;
+}
+.logoPost {
+  max-width: 20%;
+}
+.articleCreatePost{
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr) ;
+  width: 75%;
+  height: 250px;
+  background-color: #F3D2C1;
+  border-radius: 8px;
+  align-self: center;
+}
+.inpPost{
+  display: flex;
+  background-color: transparent;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 5;
+  margin: 10px 10px 10px 30px;
+  border: 0;
+  color: #001858;
+}
+.inpPost::placeholder {
+  color: #001858;
+}
+.btnCancelPost{
+  background-color: transparent;
+  color: #001858;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px;
+  border: none;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 5;
+  grid-row-end: 6;
+  display: flex;
+  margin: 8px 6px;
+  justify-content: center;
+}
+.btnCancelPost:hover{
+  border: #001858 solid 2px;
+}
+.btnCreatePost{
+  background-color: #F582AE;
+  color: #001858;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px;
+  border: none;
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 5;
+  grid-row-end: 6;
+  display: flex;
+  margin: 8px 6px;
+  justify-content: center;
+}
+.btnCreatePost:hover{
+  background-color: #D95E8D;
+  color: white;
+}
+.userImg {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.nameUser {
+  color: #001858;
+  margin-top: 25px;
+  margin-left: 10px;
+  background-color: transparent;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+/* --------------- feed.js 'ALL POSTS' STYLE --------------- */
+.containerPosts {
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.articlePost{
+  display: grid;
+  background-color:#fef6e4;
+  width: 75%;
+  height: auto;
+  border-radius: 8px;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr) ;
+  padding-top: 15px;
+  box-shadow: 2px 5px 5px 0px rgba(0,24,88,0.75);
+  margin-bottom: 10px;
+  margin-top: 40px;
+  border: 1px solid #F3D2C1;
+}
+.imgUserPost{
+  display: flex;
+  border-radius: 50%;
+  width: 35px;
+  margin-left: 10px;
+  }
+.nameUserPost{
+  display: flex;
+  color: #001858;
+  background-color: transparent;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  margin-top: 10px;
+}
+.textPost{
+  display: flex;
+  color: #001858;
+  background-color: transparent;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 4;
+  margin: 10px 10px 10px 30px;
+}
+.bottomDiv{
+  display: flex;
+  width: 100%;
+  background-color: #F3D2C1;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  border-radius: 0 0 8px 8px;
+  justify-content: space-between;
+}
+.like, .dislike{
+  height: 20px;
+  background-color: transparent;
+}
+.btnLike {
+  border: none;
+  background-color: transparent;
+}
+.likesNum {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  color: #001858;
+}
+.btnEdit{
+  width: 35px;
+  height: 20px;
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  justify-self: end;
+  border: none;
+}
+.btnDelete{
+  width: 35px;
+  height: 20px;
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  justify-self: end;
+  border: none;
+  margin-right: 30px;
+}
+.imgDelete {
+  width: 100%;
+  float: center;
+}
+.imgEdit{
+  width: 100%;
+  float: center;
+}
+/* --------------- modal.js 'confirm delete post' STYLE --------------- */
+.modalForDelete{
+  height: 12%;
+  width: 60%;
+  border-radius: 8px;
+  padding-top: 15px;
+  box-shadow: 2px 5px 5px 0px rgba(0,24,88,0.75);
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.titleModal{
+  color:#001858;
+  align-self: center;
+}
+.btnAgree{
+  color: white;
+  font-weight: bold;
+  background-color: #F582AE;
+  border: none;
+  margin: 10px;
+}
+.btnAgree:hover{
+  color: white;
+  font-weight: bold;
+  background-color:#D95E8D;
+  border: none;
+}
+.btnCancel{
+  color:#001858;
+  font-weight: bold;
+  border: none;
+}
+.btnCancel:hover{
+  border: #001858 1px solid;
+}
+/* --------------- modal.js 'confirm edit post' STYLE --------------- */
+.articlePostEdit{
+  background-color:#f3d2c1;
+  width: 75%;
+  height: 200px;
+  border-radius: 8px;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr) ;
+  padding-top: 15px;
+  box-shadow: 2px 5px 5px 0px rgba(0,24,88,0.75);
+  margin-bottom: 10px;
+  margin-top: 40px;
+}
+.userImgEdit{
+  display: flex;
+  border-radius: 50%;
+  width: 30px;
+  margin-left: 10px;
+  align-self: center;
+  }
+.nameUserEdit{
+  display: flex;
+  color: #001858;
+  background-color: transparent;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  align-self: center;
+  margin-left: 5px;
+}
+.textAreaEdit{
+  display: flex;
+  color: #001858;
+  background-color: transparent;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 4;
+  margin: 10px 10px 10px 30px;
+}
+.btnCancelEdit{
+  background-color: transparent;
+  color: #001858;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px;
+  border: none;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  display: flex;
+  margin: 8px 2px;
+  justify-content: center;
+}
+.btnCancelEdit:hover{
+  border: #001858 solid 2px;
+}
+.editPostConfirm{
+  background-color: #F582AE;
+  color: #001858;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px;
+  border: none;
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  display: flex;
+  margin: 8px 2px;
+  justify-content: center;
+}
+.editPostConfirm:hover{
+  background-color: #D95E8D;
+  color: white;
+}
+/*--------------------------------- Media Query type Destok--------------------------------- */
+@media only screen and (min-width: 768px) and (max-width: 1400px) { 
+  /* Feed */
+    #homeSection {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 150px 120px 70px 50px 50px 50px;
+    
+  }
+
+  .logo {
+    grid-area: 1 / 1 / 8 / 2; 
+    align-self: center;
+    justify-self: center;
+  }
+
+  .errorHome {
+    grid-area:  1 / 2 / 2 / 3;
+  }
+
+  .formLogin {
+    grid-area: 2 / 2 / 3 / 3;
+    gap: 20px;
+  }
+
+  .form {
+    padding: 5px 0 5px 0;
+    font-size: 20px;
+    color: #001858;
+  }
+
+  .btnLogin {
+    padding: 8px 20px 8px 20px;
+    font-size: 20px;
+
+  }
+
+  .line, .line2 {
+    height: 2px;
+    width: 100px;
+    
+  }
+
+  .or {
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  .division {
+    grid-area:  3 / 2 / 4 / 3;
+    justify-self: center;
+    align-self: center;
+  }
+
+  .btnGoogle {
+    grid-area:  4 / 2 / 5 / 3;
+    justify-self: center;
+    width: 150px;
+  }
+
+  .btnHomeRegister {
+    grid-area: 5 / 2 / 6 / 3; 
+    place-self: center;
+    justify-self: center;
+    padding: 8px 20px 8px 20px;
+    font-size: 20px;
+  }
+ /* Register Section */
+  #regSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 40px;
+  }
+
+  #logo {
+    max-width: 70%;
+  }
+
+  .btnRegister {
+    padding: 10px 30px 10px 30px;
+    font-size: 20px;
+  }
+
+  .nameUserPost {
+    margin-left: -90px;
+  }
+  
+
+  .nameUser {
+    margin-left: -20%;
+  }
+
+    
+}
