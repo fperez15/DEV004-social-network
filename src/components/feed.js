@@ -68,7 +68,7 @@ export const feed = () => {
   feedSection.appendChild(logo);
   feedSection.appendChild(divPost);
   // Llena la información del usuario
-  const user = auth.currentUser;
+  const user = auth.currentUser; // usuario con sesion iniciada
   if (user !== null) {
     user.providerData.forEach(async (profile) => {
       const photo = profile.photoURL;
@@ -78,7 +78,7 @@ export const feed = () => {
       if (photo === null) {
         imgUser.src = './img/user.png';
       }
-      const docRef = doc(db, 'users', user.uid);
+      const docRef = doc(db, 'users', user.uid); // se muestra el nombre del susuario cuando se registra de manera normal
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         const nameF = docSnap.data().displayName;
@@ -102,8 +102,8 @@ export const feed = () => {
   imgPost.addEventListener('click', () => onNavigate('/post'));
   // Obtenemos los post en tiempo real
   const containerPosts = document.createElement('section');
-  onSnapshot(queryInstruction(), (array) => {
-    while (containerPosts.firstChild) {
+  onSnapshot(queryInstruction(), (array) => { // consualta en tiempo real
+    while (containerPosts.firstChild) { // limpia pantalla cuando se agrega nuevos post
       containerPosts.removeChild(containerPosts.firstChild);
     }
     array.forEach((posts) => {
@@ -176,11 +176,11 @@ export const feed = () => {
       textPost.textContent = posts.data().post;
       const owner = posts.data().ownerPost;
       const userAuth = auth.currentUser.displayName;
-      if (owner === userAuth) {
+      if (owner === userAuth) { //confirma si el usuario le da like o no
         btnDelete.style.display = 'flex';
         btnEdit.style.display = 'flex';
       }
-      if (postLikes.includes(auth.currentUser.uid)) {
+      if (postLikes.includes(auth.currentUser.uid)) { 
         like.style.display = 'none';
         dislike.style.display = 'flex';
       } else {
@@ -195,9 +195,9 @@ export const feed = () => {
           if (getIdPost === posts.id) {
             const document = await getPost(posts.id);
             const post = document.data();
-            if (post.likes.includes(user.uid)) {
+            if (post.likes.includes(user.uid)) { // si tiene like el post, se le da like al post
               toDislike(posts.id, user.uid);
-            } else {
+            } else { // si no tiene like se le da like
               toLike(posts.id, user.uid);
             }
           }

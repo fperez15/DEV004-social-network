@@ -19,6 +19,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   GoogleAuthProvider,
+  GithubAuthProvider,
   signInWithPopup,
   getAuth,
   onAuthStateChanged,
@@ -38,6 +39,7 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
+export const providerGithub = new GithubAuthProvider();
 export const db = getFirestore(app);
 export const db2 = getFirestore();
 
@@ -77,6 +79,17 @@ export const logInGoogle = () => {
     });
 };
 
+//login with github
+
+export const logInGithub = () => {
+  return signInWithPopup(auth, providerGithub)
+  .then((result) => {
+    const credential = GithubAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    const user = result.user;
+  })
+}
+
 // Encuentra si hay usuario conectado
 export function authStateChangedEvent(cb) {
   onAuthStateChanged(auth, (user) => cb(user));
@@ -114,6 +127,7 @@ export const onGetPosts = () => {
   });
   return post;
 };
+
 // Elimina post
 export const deletePost = (id) => deleteDoc(doc(db, 'post', id));
 

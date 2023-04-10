@@ -11,7 +11,7 @@
   align-items: center;
 }
 #logo {
-  max-width: 90%;
+  max-width: 65%;
 }
 .formRegister,
 .formLogin {
@@ -78,6 +78,11 @@
   color: #FEF6E4;
 }
 .btnGoogle {
+  width: 150px;
+  padding: 10px 15px 10px 15px;
+}
+
+.btnGithub {
   width: 150px;
   padding: 10px 15px 10px 15px;
 }

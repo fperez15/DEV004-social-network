@@ -1,5 +1,5 @@
 import { onNavigate } from '../router';
-import { logIn, logInGoogle } from '../lib/fireBase.js';
+import { logIn, logInGoogle, logInGithub } from '../lib/fireBase.js';
 
 export const home = () => {
   const homeSection = document.createElement('section');
@@ -60,6 +60,12 @@ export const home = () => {
   btnGoogle.id = 'btnGoogle';
   btnGoogle.src = './img/btnGoogle.png';
 
+  //creacion de btn Github
+  const btnGithub = document.createElement('img');
+  btnGithub.className = 'btnGithub';
+  btnGithub.id = 'btnGithub';
+  btnGithub.src = './img/btnGithub.png'
+
   const btnHomeRegister = document.createElement('button');
   btnHomeRegister.textContent = 'REGISTER';
   btnHomeRegister.className = 'btnHomeRegister';
@@ -70,6 +76,7 @@ export const home = () => {
   homeSection.appendChild(formLogin);
   homeSection.appendChild(division);
   homeSection.appendChild(btnGoogle);
+  homeSection.appendChild(btnGithub);
   homeSection.appendChild(btnHomeRegister);
 
   // Ir a formulario de registro
@@ -114,6 +121,17 @@ export const home = () => {
           errorHome.textContent = 'Something went wrong.';
         }
       });
+  });
+
+  // Inicio de sesion con github
+  btnGithub.addEventListener('click', () => {
+    logInGithub()
+    .then(() => {
+      onNavigate('/feed');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   });
 
   return homeSection;
